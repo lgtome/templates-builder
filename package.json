@@ -1,0 +1,40 @@
+{
+    "name": "file-system-parse",
+    "version": "1.2.3",
+    "main": "./src/index.js",
+    "license": "MIT",
+    "bin": {
+        "sys-parse": "./bin/sys-parse"
+    },
+    "scripts": {
+        "test": "node sys-parse",
+        "compile": "tsc -p tsconfig.build.json"
+    },
+    "directories": {
+        "lib": "src",
+        "bin": "bin",
+        "test": "__tests__"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.17.0",
+        "@babel/parser": "^7.17.0",
+        "@babel/plugin-transform-modules-commonjs": "^7.16.8",
+        "@babel/preset-env": "^7.16.11",
+        "babel-loader": "^8.2.3",
+        "clean-webpack-plugin": "^4.0.0",
+        "webpack": "^5.68.0",
+        "webpack-cli": "^4.9.2"
+    },
+    "browser": {
+        "fs": false,
+        "path": false,
+        "os": false
+    },
+    "dependencies": {
+        "path-browserify": "^1.0.1"
+    },
+    "type": "commonjs"
+}

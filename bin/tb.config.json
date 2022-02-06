@@ -1,0 +1,5 @@
+{
+    "entry": "src",
+    "extensions": ["ts", "js", "tsx", "jsx"],
+    "templatesFolder": "./templates/tb.js"
+}
