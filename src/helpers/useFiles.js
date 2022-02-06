@@ -2,11 +2,11 @@ const fs = require('fs')
 const { FILES_EXTENSIONS } = require('../utils/templates')
 const { resolve } = require('path')
 const { BuildTemplate } = require('../services/TemplateBuilder')
-const { camelCaseTransform } = require('./useTransform')
+const { kebabCaseTransform } = require('./useTransform')
 const builder = new BuildTemplate()
 
 async function appendItems(path, lastElement) {
-    const files = transformFilenames(camelCaseTransform(lastElement))
+    const files = transformFilenames(kebabCaseTransform(lastElement))
     for (const currentFile of files) {
         const element = resolve(path, currentFile)
         await fs.promises.writeFile(element, ``).then(() => {

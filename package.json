@@ -4,7 +4,7 @@
     "main": "./src/index.js",
     "license": "MIT",
     "bin": {
-        "sys-parse": "./bin/sys-parse"
+        "tb": "./bin/tb"
     },
     "scripts": {
         "test": "node sys-parse",

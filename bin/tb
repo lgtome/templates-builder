@@ -1,0 +1,34 @@
+#!/usr/bin/env node
+'use strict'
+/* Babel */
+const { transformSync } = require('@babel/core')
+const BABEL_PLUGINS = { plugins: ['@babel/plugin-transform-modules-commonjs'] }
+/* Babel */
+/* Utils */
+const { existsSync, writeFile, readFile, rmSync } = require('fs')
+const { generateHash } = require('../src/helpers/generateHash')
+const { TemplateParser } = require('../src/services/TemplateParser')
+const { build } = require(`${__dirname}/../src/index.js`)
+const directoryPath = require('../src/helpers/usePath')(__dirname)
+/* Utils */
+/* Config */
+const config =
+    existsSync(`${directoryPath}tb.config.json`) &&
+    require(`${directoryPath}tb.config.json`)
+const { templatesFolder: templatesFolderPath } = config
+/* Config */
+/* Templates from file */
+const templates = transformSync('export const s = 2', BABEL_PLUGINS)
+const tempFilePath = `${__dirname}/${generateHash(2)}.js`
+/* Templates from file */
+
+/* Parse file with template */
+writeFile(tempFilePath, templates.code, (error) => {
+    const test = existsSync(tempFilePath) && require(tempFilePath)
+    console.log(test, 'TEST templates!')
+    rmSync(tempFilePath)
+})
+/* Parse file with template */
+/* Execute */
+build(config)
+/* Execute */
