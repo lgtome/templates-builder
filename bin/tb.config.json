@@ -1,5 +1,14 @@
 {
     "entry": "src",
-    "extensions": ["ts", "js", "tsx", "jsx"],
-    "templatesFolder": "./templates/tb.js"
+    "extension": "js",
+    "templatesFolder": "./templates/tb.js",
+    "includedFolders": [
+        {
+            "components": "index"
+        }
+    ],
+    "transformType": "kebab",
+    "fileTypes": ["props", "story", "helpers", "services", "index", "types"],
+    "folders": ["components", "hooks", "common"],
+    "reExport": true
 }

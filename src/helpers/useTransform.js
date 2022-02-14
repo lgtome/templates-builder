@@ -19,4 +19,16 @@ function pascalCaseTransform(filename = '') {
     return filename.replace(regex, (element, index) => element.toUpperCase())
 }
 
-module.exports = { kebabCaseTransform, pascalCaseTransform, snakeCaseTransform }
+function camelCaseTransform(filename = '') {
+    const regex = /^[A-Z]/g
+    return filename.replace(regex, (element, index) =>
+        index === 0 ? element.toLowerCase() : element
+    )
+}
+
+module.exports = {
+    kebabCaseTransform,
+    pascalCaseTransform,
+    snakeCaseTransform,
+    camelCaseTransform,
+}
