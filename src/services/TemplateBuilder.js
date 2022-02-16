@@ -8,8 +8,7 @@ class BuildTemplate {
     )
   }
   `
-
-    constructor() {}
+    constructor(file) {}
     build(file) {
         return this.#index_template(file)
     }

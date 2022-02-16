@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+'use strict'
+/* Babel */
+const { transformFileSync } = require('@babel/core')
+const BABEL_PLUGINS = { plugins: ['@babel/plugin-transform-modules-commonjs'] }
+/* Babel */
+/* Utils */
+const { existsSync, writeFileSync, rmSync } = require('fs')
+const { generateHash } = require('../src/helpers/generateHash')
+const { build } = require(`${__dirname}/../src/index.js`)
+const directoryPath = require('../src/helpers/usePath')(__dirname)
+/* Utils */
+/* Config */
+const externalConfig =
+    existsSync(`${directoryPath}tb.config.json`) &&
+    require(`${directoryPath}tb.config.json`)
+const { templatesFolder: templatesFolderPath, ...config } = externalConfig || {}
+//Insert undefined because we have a default function param
+const outputConfig = Object.keys(config).length > 0 ? config : undefined
+/* Config */
+if (templatesFolderPath) {
+    /* Templates from file */
+    const templatesFile = transformFileSync(templatesFolderPath, BABEL_PLUGINS)
+    const tempFilePath = `${__dirname}/${generateHash(2)}.js`
+    /* Templates from file */
+
+    /* Parse file with templates */
+    writeFileSync(tempFilePath, templatesFile.code)
+    const templates = existsSync(tempFilePath) && require(tempFilePath)
+    if (templates && config) {
+        Object.assign(config, templates, { isTemplatesFolder: true })
+        rmSync(tempFilePath)
+    }
+    /* Parse file with templates */
+}
+
+/* Execute */
+build(outputConfig)
+/* Execute */

@@ -1,5 +1,4 @@
 function createCorrectPath(path) {
-    // const find = 'node_modules'
     const find = 'node_modules'
     const PATH_RESOLVED = path.includes(find)
         ? path.slice(0, path.indexOf(find))

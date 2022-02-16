@@ -1,0 +1,8 @@
+.env
+.webpack.config.js
+node_modules
+.gitignore
+README.md
+yarn.lock
+CHANGELOG
+LICENSE

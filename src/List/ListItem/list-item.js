@@ -1,7 +1,7 @@
 
   import React,{FC} from 'react'
 
-  export const s:FC = () => {
+  export const ListItem:FC = () => {
     return (
       <div>hey</div>
     )
