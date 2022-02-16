@@ -7,9 +7,7 @@ const {
     snakeCaseTransform,
     camelCaseTransform,
 } = require('./useTransform')
-
 const builder = new (require('../services/TemplateBuilder').BuildTemplate)()
-
 async function appendItems(path, lastElement, config = {}) {
     console.log(config, 'useFiles')
     const { transformType } = config
