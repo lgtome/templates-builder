@@ -1,5 +1,6 @@
 # Template builder for React
 
+[![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github)](https://wallabyjs.com/oss/)
 ![NPM version](https://img.shields.io/npm/v/templates-builder?style=for-the-badge)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/templates-builder?style=for-the-badge)
 ![GitHub last commit](https://img.shields.io/github/last-commit/NaaYaa-oops/templates-builder?style=for-the-badge)
