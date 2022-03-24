@@ -1,16 +1,16 @@
 class BuildTemplate {
-    #index_template = (filename) => `
+    #template = (filename) => `
   import React,{FC} from 'react'
 
   export const ${filename}:FC = () => {
     return (
-      <div>hey</div>
+      <div></div>
     )
   }
   `
     constructor(file) {}
     build(file) {
-        return this.#index_template(file)
+        return this.#template(file)
     }
 }
 

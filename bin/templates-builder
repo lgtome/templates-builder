@@ -16,6 +16,7 @@ const externalConfig =
     require(`${directoryPath}tb.config.json`)
 const { templatesFolder: templatesFolderPath, ...config } = externalConfig || {}
 //Insert undefined because we have a default function param
+console.log(templatesFolderPath, config)
 const outputConfig = Object.keys(config).length > 0 ? config : undefined
 /* Config */
 if (templatesFolderPath) {

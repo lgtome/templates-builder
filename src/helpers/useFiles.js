@@ -9,14 +9,12 @@ const {
 } = require('./useTransform')
 const builder = new (require('../services/TemplateBuilder').BuildTemplate)()
 async function appendItems(path, lastElement, config = {}) {
-    console.log(config, 'useFiles')
     const { transformType } = config
     const transform = getCorrectTransformType(transformType)
     const files = transformFilenames(transform(lastElement), config)
     for (const currentFile of files) {
         const element = resolve(path, currentFile)
         await fs.promises.writeFile(element, ``).then(() => {
-            console.log(lastElement, currentFile)
             fs.promises.appendFile(element, builder.build(lastElement))
         })
     }
