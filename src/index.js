@@ -1,14 +1,15 @@
 const fs = require('fs')
-const { resolve, join } = require('path')
+const { resolve } = require('path')
 const { appendItems } = require('./helpers/useFiles')
 const createCorrectPath = require('./helpers/usePath')
 const { getFolders, appendFolders } = require('./helpers/useFolders')
-const { EXTERNAL_PATH, INNER_CONFIG } = require('./utils/templates')
+const { EXTERNAL_PATH, INNER_CONFIG } = require('./utils/config')
+
 const ABSOLUTE_PATH = resolve(__dirname)
 
 async function build(config = INNER_CONFIG) {
     const { entry } = config || {}
-
+    console.log(config, entry)
     const ABSOLUTE_PATH_FROM_ENTRY = entry
         ? resolve(ABSOLUTE_PATH, entry)
         : ABSOLUTE_PATH
@@ -27,8 +28,8 @@ async function build(config = INNER_CONFIG) {
             await fs.promises.mkdir(tempPath)
 
             if (tempPath === executePath) {
-                appendItems(tempPath, current, config)
-                appendFolders(tempPath, current, config)
+                // appendItems(tempPath, current, config)
+                // appendFolders(tempPath, current, config)
             }
         } catch (err) {}
     }

@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { FILE_TYPES } = require('../utils/templates')
+const { FILE_TYPES } = require('../utils/config')
 const { resolve } = require('path')
 const {
     kebabCaseTransform,
@@ -36,16 +36,14 @@ function getCorrectTransformType(type) {
 function transformFilenames(filename, config) {
     const { extension, fileTypes, reExport } = config
     const acceptedTypes = fileTypes || FILE_TYPES
-    return acceptedTypes
-        .map((type) => {
-            if (type === 'index') {
-                return reExport
-                    ? [`${type}.${extension}`, `${filename}.${extension}`]
-                    : `${type}.${extension}`
-            }
-            return `${filename}.${type}.${extension}`
-        })
-        .flat()
+    return acceptedTypes.flatMap((type) => {
+        if (type === 'index') {
+            return reExport
+                ? [`${type}.${extension}`, `${filename}.${extension}`]
+                : `${type}.${extension}`
+        }
+        return `${filename}.${type}.${extension}`
+    })
 }
 
 module.exports = { appendItems }

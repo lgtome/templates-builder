@@ -9,4 +9,9 @@ const INNER_CONFIG = {
     folders: ['components'],
 }
 const EXTERNAL_PATH = process.argv.slice(2)[0]
+
+if (!EXTERNAL_PATH) {
+    process.exit(0)
+}
+
 module.exports = { FILE_TYPES, EXTERNAL_PATH, INNER_CONFIG }
