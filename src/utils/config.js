@@ -1,17 +1,52 @@
-// const FILES_EXTENSIONS = ['.props.ts', '.presets.tsx', 'index.tsx']
-const FILE_TYPES = ['props', 'presets', 'index']
-const INNER_CONFIG = {
-    adjustVars: FILE_TYPES,
-    entry: 'src',
-    transformType: 'kebab',
-    extension: 'js',
-    templatesFolder: false,
-    folders: ['components'],
-}
-const EXTERNAL_PATH = process.argv.slice(2)[0]
+const InitializeConfig = () => {
+    const key = 'cfg'
+    const EXTERNAL_PATH = process.argv.slice(2)[0]
 
-if (!EXTERNAL_PATH) {
-    process.exit(0)
-}
+    const UNIQUE_VARS = {
+        main: Symbol('main'),
+        index: Symbol('index'),
+    }
+    const FRAMEWORKS = {
+        vue: Symbol('vue'),
+        react: Symbol('react'),
+        angular: Symbol('angular'),
+    }
 
-module.exports = { FILE_TYPES, EXTERNAL_PATH, INNER_CONFIG }
+    if (!EXTERNAL_PATH) {
+        process.exit(0)
+    }
+    const initialConfig = {
+        adjustVars: ['index', 'props', 'styles', 'stories'],
+        entry: 'src',
+        transformType: 'kebab',
+        extension: 'js',
+        framework: 'vue',
+        folders: ['components', 'services', 'helpers', 'graphql', '__tests__'],
+        templatesFolder: false,
+        fileNameSeparator: '.',
+        reExport: true,
+    }
+
+    const config = new Map().set(key, initialConfig)
+
+    return {
+        modifyConfig: (options) => {
+            config.set(key, { ...config.get(key), ...options })
+            return config.get(key)
+        },
+        getFileTypes: () => {
+            const cfg = config.get(key)
+            return cfg['adjustVars']
+        },
+        getCurrentFramework: () => {
+            const framework = config.get(key)['framework']
+            return FRAMEWORKS[framework]
+        },
+        getConfig: () => initialConfig,
+        getExternalPath: () => EXTERNAL_PATH,
+        getUniqueVars: () => UNIQUE_VARS,
+        getFrameworks: () => FRAMEWORKS,
+    }
+}
+const initializedConfig = InitializeConfig()
+module.exports = { ...initializedConfig, initializedConfig }

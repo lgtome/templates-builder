@@ -1,0 +1,14 @@
+{
+    "color": true,
+    "jobs": 1,
+    "extension": ["js", "cjs", "mjs"],
+    "package": "./package.json",
+    "retries": 1,
+    "diff": true,
+    "sort": false,
+    "watch": true,
+    "parallel": false,
+    "global": ["process", "$"],
+    "require": "@babel/register",
+    "spec": ["__tests__/**/*.test.js"]
+}

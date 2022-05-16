@@ -1,17 +1,61 @@
-class BuildTemplate {
-    #template = (filename) => `
-  import React,{FC} from 'react'
+const {
+    ReactTemplatesCollection,
+} = require('./Frameworks/ReactTemplateService')
+const {
+    getUniqueVars,
+    getFrameworks,
+    getCurrentFramework,
+} = require('../utils/config')
+const {
+    removeSeparatorsTransform,
+    cutExtensionTransform,
+} = require('../helpers/useTransform')
+const { TemplateCollection } = require('./TemplatesCollection')
+const { Logger } = require('./Logger')
+class BuildTemplate extends TemplateCollection {
+    constructor() {
+        super()
+        this.frameworks = getFrameworks()
+        this.framework = getCurrentFramework()
+    }
+    build(options = {}) {
+        const { file, extension = 'js', type, relation } = options
+        const cutFilename = cutExtensionTransform(file)
+        const formattedFilename = removeSeparatorsTransform(cutFilename)
+        const templateVars = {
+            filename: formattedFilename,
+            extension,
+            relation,
+        }
+        return this.getTemplateByFramework()(type)({ ...templateVars })
+    }
 
-  export const ${filename}:FC = () => {
-    return (
-      <div></div>
-    )
-  }
-  `
-    constructor(file) {}
-    build(file) {
-        return this.#template(file)
+    getTemplateByType(framework) {
+        return (type) => {
+            switch (type) {
+                case getUniqueVars().index:
+                    return this.templates[framework].index
+                case getUniqueVars().main:
+                    return this.templates[framework].main
+                default:
+                    return this.templates[framework].rest
+            }
+        }
+    }
+    getTemplateByFramework() {
+        if (!this.framework) {
+            Logger.notProvided('framework')
+            process.exit(1)
+        }
+        switch (this.framework) {
+            case this.frameworks.vue:
+                return this.getTemplateByType('vue')
+            case this.frameworks.angular:
+                return this.getTemplateByType('angular')
+            case this.frameworks.react:
+                return this.getTemplateByType('react')
+        }
     }
 }
-
-module.exports = { BuildTemplate }
+const builder = new BuildTemplate()
+module.exports = { builder }

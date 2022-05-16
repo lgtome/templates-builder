@@ -1,5 +1,9 @@
 const fs = require('fs')
-const { FILE_TYPES } = require('../utils/config')
+const {
+    initializedConfig,
+    getUniqueVars,
+    getConfig,
+} = require('../utils/config')
 const { resolve } = require('path')
 const {
     kebabCaseTransform,
@@ -7,15 +11,31 @@ const {
     snakeCaseTransform,
     camelCaseTransform,
 } = require('./useTransform')
-const builder = new (require('../services/TemplateBuilder').BuildTemplate)()
-async function appendItems(path, lastElement, config = {}) {
-    const { transformType } = config
+const { applyMiddlewares } = require('../middlewares/applyMiddlewares')
+const { builder } = require('../services/TemplateBuilder')
+
+const { Logger } = require('../services/Logger')
+
+async function appendItems(path, lastElement, middlewares = []) {
+    if (!Array.isArray(middlewares)) {
+        Logger.wrongValue('middlewares', Array)
+        return process.exit(1)
+    }
+    const { transformType, extension } = getConfig()
     const transform = getCorrectTransformType(transformType)
-    const files = transformFilenames(transform(lastElement), config)
-    for (const currentFile of files) {
-        const element = resolve(path, currentFile)
-        await fs.promises.writeFile(element, ``).then(() => {
-            fs.promises.appendFile(element, builder.build(lastElement))
+    const files = transformFilenames(transform(lastElement))
+    const transformedFiles = applyMiddlewares(files)(...middlewares)
+    console.log(files, transformedFiles)
+
+    for (const { file, type, relation } of transformedFiles) {
+        console.log(file)
+        const elementPath = resolve(path, file)
+        console.log(elementPath, '->', file, type)
+        await fs.promises.writeFile(elementPath, ``).then(() => {
+            fs.promises.appendFile(
+                elementPath,
+                builder.build({ file, extension, type, relation })
+            )
         })
     }
 }
@@ -33,16 +53,30 @@ function getCorrectTransformType(type) {
     }
 }
 
-function transformFilenames(filename, config) {
-    const { extension, fileTypes, reExport } = config
-    const acceptedTypes = fileTypes || FILE_TYPES
+function transformFilenames(filename) {
+    const { extension, reExport, fileNameSeparator = '.' } = getConfig()
+    const fileTypes = initializedConfig.getFileTypes()
+    const acceptedTypes = fileTypes
     return acceptedTypes.flatMap((type) => {
         if (type === 'index') {
             return reExport
-                ? [`${type}.${extension}`, `${filename}.${extension}`]
-                : `${type}.${extension}`
+                ? [
+                      {
+                          file: `${type}${fileNameSeparator}${extension}`,
+                          type: getUniqueVars().index,
+                          relation: filename,
+                      },
+                      {
+                          file: `${filename}.${extension}`,
+                          type: getUniqueVars().main,
+                      },
+                  ]
+                : { file: `${type}${fileNameSeparator}${extension}`, type }
         }
-        return `${filename}.${type}.${extension}`
+        return {
+            file: `${filename}${fileNameSeparator}${type}${fileNameSeparator}${extension}`,
+            type,
+        }
     })
 }
 
