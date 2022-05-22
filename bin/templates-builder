@@ -52,8 +52,6 @@ if (templatesFolderPath) {
     /* Parse file with templates */
 }
 
-// console.log(outputConfig)
 /* Execute */
-// console.log(outputConfig, 'out', config)
 build(outputConfig)
 /* Execute */

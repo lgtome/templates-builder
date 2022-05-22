@@ -14,30 +14,30 @@ async function build(externalConfig) {
     checkConfiguration()
     const { entry } = config || {}
     console.log(config)
-    // const externalPath = getExternalPath()
-    // const ABSOLUTE_PATH_FROM_ENTRY = entry
-    //     ? resolve(ABSOLUTE_PATH, entry)
-    //     : ABSOLUTE_PATH
+    const externalPath = getExternalPath()
+    const ABSOLUTE_PATH_FROM_ENTRY = entry
+        ? resolve(ABSOLUTE_PATH, entry)
+        : ABSOLUTE_PATH
 
-    // const executePath = resolve(
-    //     createCorrectPath(ABSOLUTE_PATH_FROM_ENTRY),
-    //     externalPath
-    // )
+    const executePath = resolve(
+        createCorrectPath(ABSOLUTE_PATH_FROM_ENTRY),
+        externalPath
+    )
 
-    // let tempPath = createCorrectPath(ABSOLUTE_PATH_FROM_ENTRY)
+    let tempPath = createCorrectPath(ABSOLUTE_PATH_FROM_ENTRY)
 
-    // for (const current of getFolders(externalPath)) {
-    //     tempPath = resolve(tempPath, current)
+    for (const current of getFolders(externalPath)) {
+        tempPath = resolve(tempPath, current)
 
-    //     try {
-    //         await fs.promises.mkdir(tempPath, { recursive: true })
+        try {
+            await fs.promises.mkdir(tempPath, { recursive: true })
 
-    //         if (tempPath === executePath) {
-    //             appendItems(tempPath, current, [VueMiddleware])
-    //             appendFolders(tempPath)
-    //         }
-    //     } catch (err) {}
-    // }
+            if (tempPath === executePath) {
+                appendItems(tempPath, current, [VueMiddleware])
+                appendFolders(tempPath)
+            }
+        } catch (err) {}
+    }
 }
 
 module.exports = { build }
