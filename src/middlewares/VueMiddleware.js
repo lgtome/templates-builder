@@ -5,9 +5,11 @@ const { getConfig, getUniqueVars } = require('../utils/config')
 function VueMiddleware(files) {
     const { framework } = getConfig()
     const { index, main } = getUniqueVars()
+
     if (framework !== 'vue') {
         return files
     }
+
     if (!Array.isArray(files)) {
         Logger.wrongValue('files', Array)
         return files

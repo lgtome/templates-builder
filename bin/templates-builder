@@ -2,40 +2,58 @@
 'use strict'
 /* Babel */
 const { transformFileSync } = require('@babel/core')
-const BABEL_PLUGINS = { plugins: ['@babel/plugin-transform-modules-commonjs'] }
+const BABEL_PLUGINS = {
+    plugins: [
+        '@babel/plugin-transform-modules-commonjs',
+        '@babel/plugin-syntax-export-namespace-from',
+    ],
+}
 /* Babel */
 /* Utils */
 const { existsSync, writeFileSync, rmSync } = require('fs')
 const { generateHash } = require('../src/helpers/generateHash')
+const path = require('path')
 const { build } = require(`${__dirname}/../src/index.js`)
 const directoryPath = require('../src/helpers/usePath')(__dirname)
 /* Utils */
 /* Config */
+// console.log(directoryPath)
 const externalConfig =
     existsSync(`${directoryPath}tb.config.json`) &&
     require(`${directoryPath}tb.config.json`)
-const { templatesFolder: templatesFolderPath, ...config } = externalConfig || {}
+const { templates: templatesFolderPath, ...config } = externalConfig || {}
 //Insert undefined because we have a default function param
-console.log(externalConfig)
 const outputConfig = Object.keys(config).length > 0 ? config : undefined
 /* Config */
 if (templatesFolderPath) {
     /* Templates from file */
-    const templatesFile = transformFileSync(templatesFolderPath, BABEL_PLUGINS)
+    const transformedTemplatesFolderPath = path.resolve(
+        __dirname,
+        templatesFolderPath
+    )
+    // console.log(path.resolve(__dirname, templatesFolderPath))
+    const templatesFile = transformFileSync(
+        transformedTemplatesFolderPath,
+        BABEL_PLUGINS
+    )
     const tempFilePath = `${__dirname}/${generateHash(2)}.js`
     /* Templates from file */
-
     /* Parse file with templates */
     writeFileSync(tempFilePath, templatesFile.code)
-    const templates = existsSync(tempFilePath) && require(tempFilePath)
-    if (templates && config) {
-        Object.assign(config, templates, { isTemplatesFolder: true })
+    const externalTemplates = existsSync(tempFilePath) && require(tempFilePath)
+    if (externalTemplates && config) {
+        const isDefaultExport = !!externalTemplates['default']
+        const templates = isDefaultExport
+            ? externalTemplates['default']
+            : externalTemplates
+        Object.assign(config, { templates })
         rmSync(tempFilePath)
     }
     /* Parse file with templates */
 }
 
+// console.log(outputConfig)
 /* Execute */
-console.log(outputConfig, 'out')
+// console.log(outputConfig, 'out', config)
 build(outputConfig)
 /* Execute */

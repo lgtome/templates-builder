@@ -25,6 +25,7 @@ const InitializeConfig = () => {
         templatesFolder: false,
         fileNameSeparator: '.',
         reExport: true,
+        templates: {},
     }
 
     const config = new Map().set(key, initialConfig)
@@ -42,11 +43,14 @@ const InitializeConfig = () => {
             const framework = config.get(key)['framework']
             return FRAMEWORKS[framework]
         },
-        getConfig: () => initialConfig,
+        getConfig: () => config.get(key),
         getExternalPath: () => EXTERNAL_PATH,
         getUniqueVars: () => UNIQUE_VARS,
         getFrameworks: () => FRAMEWORKS,
+        getInitialConfigKeys: () => Object.keys(initialConfig),
     }
 }
+
 const initializedConfig = InitializeConfig()
+
 module.exports = { ...initializedConfig, initializedConfig }

@@ -1,7 +1,4 @@
 const {
-    ReactTemplatesCollection,
-} = require('./Frameworks/ReactTemplateService')
-const {
     getUniqueVars,
     getFrameworks,
     getCurrentFramework,
@@ -10,13 +7,13 @@ const {
     removeSeparatorsTransform,
     cutExtensionTransform,
 } = require('../helpers/useTransform')
-const { TemplateCollection } = require('./TemplatesCollection')
+const { TemplateCollection } = require('../templates/TemplatesCollection')
 const { Logger } = require('./Logger')
 class BuildTemplate extends TemplateCollection {
+    #framework = getCurrentFramework()
+    #frameworks = getFrameworks()
     constructor() {
         super()
-        this.frameworks = getFrameworks()
-        this.framework = getCurrentFramework()
     }
     build(options = {}) {
         const { file, extension = 'js', type, relation } = options
@@ -27,10 +24,10 @@ class BuildTemplate extends TemplateCollection {
             extension,
             relation,
         }
-        return this.getTemplateByFramework()(type)({ ...templateVars })
+        return this.#getTemplateByFramework()(type)({ ...templateVars })
     }
 
-    getTemplateByType(framework) {
+    #getTemplateByType(framework) {
         return (type) => {
             switch (type) {
                 case getUniqueVars().index:
@@ -42,18 +39,18 @@ class BuildTemplate extends TemplateCollection {
             }
         }
     }
-    getTemplateByFramework() {
-        if (!this.framework) {
+    #getTemplateByFramework() {
+        if (!this.#framework) {
             Logger.notProvided('framework')
             process.exit(1)
         }
-        switch (this.framework) {
-            case this.frameworks.vue:
-                return this.getTemplateByType('vue')
-            case this.frameworks.angular:
-                return this.getTemplateByType('angular')
-            case this.frameworks.react:
-                return this.getTemplateByType('react')
+        switch (this.#framework) {
+            case this.#frameworks.vue:
+                return this.#getTemplateByType('vue')
+            case this.#frameworks.angular:
+                return this.#getTemplateByType('angular')
+            case this.#frameworks.react:
+                return this.#getTemplateByType('react')
         }
     }
 }
