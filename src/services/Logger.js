@@ -10,6 +10,9 @@ class Logger {
     static message(value, msg) {
         console.log(`${value} ${msg}`)
     }
+    static warning(message) {
+        console.log(`⚠️ Warning ${message}`)
+    }
 }
 
 module.exports = { Logger }

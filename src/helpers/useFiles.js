@@ -25,18 +25,18 @@ async function appendItems(path, lastElement, middlewares = []) {
     const transform = getCorrectTransformType(transformType)
     const files = transformFilenames(transform(lastElement))
     const transformedFiles = applyMiddlewares(files)(...middlewares)
-    console.log(files, transformedFiles)
 
     for (const { file, type, relation } of transformedFiles) {
-        console.log(file)
         const elementPath = resolve(path, file)
-        console.log(elementPath, '->', file, type)
-        await fs.promises.writeFile(elementPath, ``).then(() => {
-            fs.promises.appendFile(
-                elementPath,
-                builder.build({ file, extension, type, relation })
-            )
-        })
+        await fs.promises
+            .writeFile(elementPath, ``)
+            .then(() => {
+                fs.promises.appendFile(
+                    elementPath,
+                    builder.build({ file, extension, type, relation })
+                )
+            })
+            .catch(Logger.warning)
     }
 }
 

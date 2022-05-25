@@ -13,7 +13,7 @@ async function build(externalConfig) {
     const config = modifyConfig(externalConfig)
     checkConfiguration()
     const { entry } = config || {}
-    console.log(config)
+
     const externalPath = getExternalPath()
     const ABSOLUTE_PATH_FROM_ENTRY = entry
         ? resolve(ABSOLUTE_PATH, entry)

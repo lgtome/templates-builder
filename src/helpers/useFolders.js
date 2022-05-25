@@ -1,4 +1,5 @@
 const { promises } = require('fs')
+const { Logger } = require('../services/Logger')
 const { getConfig } = require('../utils/config')
 
 function getFolders(path) {
@@ -7,7 +8,11 @@ function getFolders(path) {
 async function appendFolders(path) {
     const { folders } = getConfig()
     for (const folder of folders) {
-        await promises.mkdir(`${path}/${folder}`)
+        try {
+            await promises.mkdir(`${path}/${folder}`)
+        } catch {
+            Logger.warning(`folder: ${folder} already exist!`)
+        }
     }
 }
 module.exports = { getFolders, appendFolders }

@@ -16,14 +16,12 @@ function VueMiddleware(files) {
     }
 
     return files.map((fileObject) => {
-        console.log(fileObject, 'fileObject')
         if (fileObject.type === index) {
             return fileObject
         }
         return {
             ...fileObject,
             file: changeExtensionTransform(fileObject.file, 'vue'),
-            type: main,
         }
     })
 }

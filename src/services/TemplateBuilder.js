@@ -2,6 +2,7 @@ const {
     getUniqueVars,
     getFrameworks,
     getCurrentFramework,
+    getConfig,
 } = require('../utils/config')
 const {
     removeSeparatorsTransform,
@@ -24,7 +25,45 @@ class BuildTemplate extends TemplateCollection {
             extension,
             relation,
         }
-        return this.#getTemplateByFramework()(type)({ ...templateVars })
+
+        return this.#getTemplateByFramework()(type)(templateVars)
+    }
+
+    #proceedTemplate(framework, type) {
+        const { templates } = getConfig()
+        if (Object.keys(templates).length <= 0) {
+            return this.templates[framework].rest
+        }
+
+        return templates[type]
+            ? constructTemplate(templates[type])
+            : this.templates[framework].rest
+
+        function constructTemplate(str) {
+            if (typeof str !== 'string') {
+                Logger.wrongValue(str, String)
+                return process.exit(0)
+            }
+
+            return ({ filename, extension, relation }) => {
+                const mappedTypes = {
+                    filename,
+                    extension,
+                    relation,
+                }
+                const regex = /\$(?:(\w+))\$/gm
+                const symbol = /\$/gm
+
+                return str.replace(regex, (match) => {
+                    const formattedMatch = match
+                        .replace(symbol, '')
+                        .toLowerCase()
+                    const processedMatch =
+                        mappedTypes[formattedMatch] || formattedMatch
+                    return processedMatch
+                })
+            }
+        }
     }
 
     #getTemplateByType(framework) {
@@ -35,7 +74,7 @@ class BuildTemplate extends TemplateCollection {
                 case getUniqueVars().main:
                     return this.templates[framework].main
                 default:
-                    return this.templates[framework].rest
+                    return this.#proceedTemplate(framework, type)
             }
         }
     }
