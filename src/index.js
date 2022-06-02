@@ -3,7 +3,7 @@ const { resolve } = require('path')
 const { appendItems } = require('./helpers/useFiles')
 const createCorrectPath = require('./helpers/usePath')
 const { getFolders, appendFolders } = require('./helpers/useFolders')
-const { getExternalPath, getConfig, modifyConfig } = require('./utils/config')
+const { getExternalPath, modifyConfig } = require('./utils/config')
 const { checkConfiguration } = require('./helpers/configCheck')
 const { VueMiddleware } = require('./middlewares/VueMiddleware')
 
@@ -11,6 +11,7 @@ const ABSOLUTE_PATH = resolve(__dirname)
 
 async function build(externalConfig) {
     const config = modifyConfig(externalConfig)
+    console.log('works entry')
     checkConfiguration()
     const { entry } = config || {}
 

@@ -8,8 +8,8 @@
     },
     "scripts": {
         "compile": "webpack .",
-        "test": "node ./bin/templates-builder",
-        "test:mocha": "env-cmd -e test mocha --config=.mocharc.json"
+        "execute": "node ./bin/templates-builder",
+        "test": "env-cmd -e test mocha --config=.mocharc.json"
     },
     "directories": {
         "lib": "src",

@@ -27,7 +27,7 @@ export default {
      * @argument deep should be ...
      */
     index({ relation, deep = 1 }) {
-        return `export {${relation}} from '${getPathByDeep(deep)}${relation}'`
+        return `export { ${relation} } from '${getPathByDeep(deep)}${relation}'`
     }
 
     rest() {

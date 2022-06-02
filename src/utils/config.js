@@ -29,7 +29,6 @@ const InitializeConfig = () => {
     }
 
     const config = new Map().set(key, initialConfig)
-
     return {
         modifyConfig: (options) => {
             config.set(key, { ...config.get(key), ...options })

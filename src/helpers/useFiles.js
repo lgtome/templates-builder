@@ -12,7 +12,7 @@ const {
     camelCaseTransform,
 } = require('./useTransform')
 const { applyMiddlewares } = require('../middlewares/applyMiddlewares')
-const { builder } = require('../services/TemplateBuilder')
+const { TemplateBuilder } = require('../services/TemplateBuilder')
 
 const { Logger } = require('../services/Logger')
 
@@ -21,6 +21,7 @@ async function appendItems(path, lastElement, middlewares = []) {
         Logger.wrongValue('middlewares', Array)
         return process.exit(1)
     }
+    const Builder = new TemplateBuilder()
     const { transformType, extension } = getConfig()
     const transform = getCorrectTransformType(transformType)
     const files = transformFilenames(transform(lastElement))
@@ -33,7 +34,7 @@ async function appendItems(path, lastElement, middlewares = []) {
             .then(() => {
                 fs.promises.appendFile(
                     elementPath,
-                    builder.build({ file, extension, type, relation })
+                    Builder.build({ file, extension, type, relation })
                 )
             })
             .catch(Logger.warning)

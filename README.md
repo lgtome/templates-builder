@@ -9,7 +9,18 @@
 
 ### [Package] which generate templates via config file and argv
 
-## Getting Started
+## Table of Contents
+
+-   [Get Started](#get-started)
+-   [Usage](#usage)
+-   [Config](#config)
+-   [Available Template Variables](#vars)
+-   [Preview](#preview)
+-   [Future Goals](#goals)
+-   [Contribution](#contribution)
+-   [License](#license)
+
+## <a name="get-started"></a>Get started
 
 Install **templates-builder** with npm:
 
@@ -23,36 +34,64 @@ or using yarn:
 yarn add templates-builder
 ```
 
-### Usage:
+## <a name="usage"></a>Usage
+
+Extended description and usage of this, see: [Config](#config)
 
 Use **default** preset or use **config** like:
 
 ```json
 {
+    "adjustVars": "['index', 'props', 'styles', 'stories']",
     "entry": "src",
-    "extension": "js",
-    "templatesFolder": "./templates/tb.js",
-    "includedFolders": [
-        {
-            "components": "index"
-        }
-    ],
     "transformType": "kebab",
-    "fileTypes": ["props", "story", "helpers", "services", "index", "types"],
-    "folders": ["components", "hooks", "common"],
-    "reExport": true
+    "extension": "js",
+    "framework": "vue",
+    "folders": "['components', 'services', 'helpers', 'graphql', '__tests__']",
+    "templatesFolder": false,
+    "fileNameSeparator": ".",
+    "reExport": true,
+    "templates": {}
 }
 ```
 
-**Also** with config or nor you need to provide path in argv, like:
+### Quick guide
+
+**Provide** your path includes your `entry` in the config, or default entry value, if no entry, is an `src`, and execute like this:
 
 ```sh
 yarn tb enter/your/path/...
 ```
 
-**tb** - custom script with executable file.
+or use package.json scripts:
 
-### Result of execute script:
+```json
+...
+{
+    "scripts":{
+        ...
+        "generate:template": "yarn tb ..."
+        ...
+    }
+}
+...
+```
+
+## <a name="config"></a> Config
+
+| Config option         | Requirements |           Available types           | Defaults |                                               Meaning |
+| :-------------------- | :----------: | :---------------------------------: | :------: | ----------------------------------------------------: |
+| **entry**             |   `false`    |              `String`               |  `src`   | Absolute directory from which the files are generated |
+| **adjustVars**        |   `false`    |           `Array<String>`           |  `None`  |                       Sub-files, like props or styles |
+| **transformType**     |   `false`    | `kebab or snake or pascal or camel` | `camel`  |                              Names transform strategy |
+| **extension**         |   `false`    |             `js or ts`              |   `js`   |                                       Files extension |
+| **framework**         |    `true`    |           `react or vue`            |  `None`  |                            Framework based generation |
+| **folders**           |   `false`    |              `String`               |  `None`  |     Additional folders, which will be on the endpoint |
+| **templates**         |   `false`    |              `String`               |  `None`  |              Path to the templates files, json format |
+| **fileNameSeparator** |   `false`    |           `. or - or _ `            |   `.`    |                           Filename separator strategy |
+| **reExport**          |   `false`    |              `Boolean`              |  `None`  |  Creates index file, which re-export fn from the main |
+
+## <a name="preview"></a>Preview
 
 -   Files with or without folders
 -   Each file have a template, also u can provide variables: `$filename$`
@@ -60,7 +99,7 @@ yarn tb enter/your/path/...
 
     ![alt text](./src/assets/image.png)
 
-### Contributing
+## <a name="contribution"></a>Contributing
 
 In an active search for contributors and I will be glad to support the package.
 
@@ -69,16 +108,14 @@ In an active search for contributors and I will be glad to support the package.
 -   Fork
 -   `git clone`
 -   `npm install` or `yarn install` make your changes
--   To compile project use `npm run compile` or `yarn run compile`
 -   Update `CHANGELOG.md` commit and make a pull request
 
-### Currently working on:
+#### Currently working on
 
--   Support not only React
--   Sub directories gen
--   Root directories gen
+-   Tests
+-   Support folder file structure
 
-### License
+## <a name="license"></a>License
 
 [MIT-licensed](./LICENSE).
 

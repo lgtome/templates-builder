@@ -10,7 +10,7 @@ const {
 } = require('../helpers/useTransform')
 const { TemplateCollection } = require('../templates/TemplatesCollection')
 const { Logger } = require('./Logger')
-class BuildTemplate extends TemplateCollection {
+class TemplateBuilder extends TemplateCollection {
     #framework = getCurrentFramework()
     #frameworks = getFrameworks()
     constructor() {
@@ -93,5 +93,5 @@ class BuildTemplate extends TemplateCollection {
         }
     }
 }
-const builder = new BuildTemplate()
-module.exports = { builder }
+
+module.exports = { TemplateBuilder }

@@ -5,5 +5,6 @@
     "transformType": "kebab",
     "adjustVars": ["props", "story", "helpers", "services", "index", "types"],
     "folders": ["components", "hooks", "common"],
-    "reExport": true
+    "reExport": true,
+    "framework": "react"
 }
