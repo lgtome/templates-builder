@@ -42,16 +42,15 @@ Use **default** preset or use **config** like:
 
 ```json
 {
-    "adjustVars": "['index', 'props', 'styles', 'stories']",
+    "adjustVars": ["index", "props", "styles", "stories"],
     "entry": "src",
     "transformType": "kebab",
     "extension": "js",
     "framework": "vue",
     "folders": "['components', 'services', 'helpers', 'graphql', '__tests__']",
-    "templatesFolder": false,
     "fileNameSeparator": ".",
     "reExport": true,
-    "templates": {}
+    "templates": "path/to/your/templates"
 }
 ```
 
@@ -105,8 +104,8 @@ In an active search for contributors and I will be glad to support the package.
 
 **Follow this flow:**
 
--   Fork
--   `git clone`
+-   Fork this repository
+-   `git clone` your fork
 -   `npm install` or `yarn install` make your changes
 -   Update `CHANGELOG.md` commit and make a pull request
 
