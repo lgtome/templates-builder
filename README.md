@@ -58,7 +58,7 @@ Use **default** preset or use **config** like:
 **Provide** your path includes your `entry` in the config, or default entry value, if no entry, is an `src`, and execute like this:
 
 ```sh
-yarn tb enter/your/path/...
+tb enter/your/path/...
 ```
 
 or use package.json scripts:
@@ -68,7 +68,7 @@ or use package.json scripts:
 {
     "scripts":{
         ...
-        "generate:template": "yarn tb ..."
+        "generate:template": "tb ..."
         ...
     }
 }
