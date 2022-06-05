@@ -47,11 +47,13 @@ jobs:
             - uses: actions/checkout@master
             - uses: actions/setup-node@master
               with:
-                  node-version: '12'
-            - uses: borales/actions-yarn@v2.3.0
+                  node-version: '14'
+            # - uses: borales/actions-yarn@v2.3.0
+            - run: npm i -g yarn
             - run: yarn install
             - uses: paambaati/codeclimate-action@v2.2.4
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TOKEN }}
               with:
+                  coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
                   coverageCommand: yarn coverage
