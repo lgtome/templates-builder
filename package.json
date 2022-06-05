@@ -28,6 +28,7 @@
         "@babel/preset-env": "^7.17.10",
         "@babel/register": "^7.17.7",
         "babel-loader": "^8.2.5",
+        "c8": "^7.11.3",
         "clean-webpack-plugin": "^4.0.0",
         "env-cmd": "^10.1.0",
         "mocha": "^10.0.0",
@@ -43,7 +44,5 @@
         "os": false
     },
     "type": "commonjs",
-    "dependencies": {
-        "c8": "^7.11.3"
-    }
+    "dependencies": {}
 }

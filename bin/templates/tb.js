@@ -1,6 +1,8 @@
 const index = `some template`
 const Main = `component template $filename$`
-export const props =
+const props =
     '$FILENAME$ is a props file with $EXTENSION$ extension and $relation$'
 const stories = 'props template'
-export const style = 'graphql template'
+const style = 'graphql template'
+
+export default { style, props }

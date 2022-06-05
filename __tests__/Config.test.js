@@ -1,15 +1,14 @@
 const assert = require('assert')
 const config = require('../src/utils/config')
-const sinon = require('sinon')
 
 const DEFAULT_CONFIG = {
-    adjustVars: ['index', 'props', 'styles', 'stories'],
+    adjustVars: ['index'],
     entry: 'src',
-    transformType: 'kebab',
+    transformType: 'camel',
     extension: 'js',
-    framework: 'vue',
-    folders: ['components', 'services', 'helpers', 'graphql', '__tests__'],
+    framework: 'react',
     fileNameSeparator: '.',
+    folders: [],
     reExport: true,
     templates: {},
 }
@@ -18,7 +17,7 @@ describe('Config', () => {
     it('getConfig should return all configuration', () => {
         const cfg = config.getConfig()
 
-        assert.deepEqual(DEFAULT_CONFIG, cfg) //?
+        assert.deepEqual(DEFAULT_CONFIG, cfg)
     })
     it.skip('getExternalPath should return value if argv provided', () => {
         const path = config.getExternalPath()

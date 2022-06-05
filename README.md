@@ -1,11 +1,12 @@
 # Template builder for React
 
-[![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github)](https://wallabyjs.com/oss/)
-![NPM version](https://img.shields.io/npm/v/templates-builder?style=for-the-badge)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/templates-builder?style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/NaaYaa-oops/templates-builder?style=for-the-badge)
+<a href="https://codeclimate.com/github/lgtome/templates-builder/test_coverage"><img src="https://api.codeclimate.com/v1/badges/7a7ed6968bf515eb6e80/test_coverage" /></a>
 
-[//]: # '![Build Status](https://img.shields.io/travis/NaaYaa-oops/templates-builder)'
+[![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg)](https://wallabyjs.com/oss/)
+
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/templates-builder)
+
+![Build Status](https://img.shields.io/github/workflow/status/lgtome/templates-builder/Main)
 
 ### [Package] which generate templates via config file and argv
 
@@ -15,6 +16,7 @@
 -   [Usage](#usage)
 -   [Config](#config)
 -   [Available Template Variables](#vars)
+-   [Templates](#templates)
 -   [Preview](#preview)
 -   [Future Goals](#goals)
 -   [Contribution](#contribution)
@@ -78,17 +80,65 @@ or use package.json scripts:
 
 ## <a name="config"></a> Config
 
-| Config option         | Requirements |           Available types           | Defaults |                                               Meaning |
-| :-------------------- | :----------: | :---------------------------------: | :------: | ----------------------------------------------------: |
-| **entry**             |   `false`    |              `String`               |  `src`   | Absolute directory from which the files are generated |
-| **adjustVars**        |   `false`    |           `Array<String>`           |  `None`  |                       Sub-files, like props or styles |
-| **transformType**     |   `false`    | `kebab or snake or pascal or camel` | `camel`  |                              Names transform strategy |
-| **extension**         |   `false`    |             `js or ts`              |   `js`   |                                       Files extension |
-| **framework**         |    `true`    |           `react or vue`            |  `None`  |                            Framework based generation |
-| **folders**           |   `false`    |              `String`               |  `None`  |     Additional folders, which will be on the endpoint |
-| **templates**         |   `false`    |              `String`               |  `None`  |              Path to the templates files, json format |
-| **fileNameSeparator** |   `false`    |           `. or - or _ `            |   `.`    |                           Filename separator strategy |
-| **reExport**          |   `false`    |              `Boolean`              |  `None`  |  Creates index file, which re-export fn from the main |
+### Sample config filename:
+
+-   `tb.config.json`
+
+### Config Options:
+
+| Config option         | Requirements |           Available types           |  Defaults   |                                                               Meaning |
+| :-------------------- | :----------: | :---------------------------------: | :---------: | --------------------------------------------------------------------: |
+| **entry**             |   `false`    |              `String`               |    `src`    |                 Absolute directory from which the files are generated |
+| **adjustVars**        |   `false`    |           `Array<String>`           | `['index']` |                                       Sub-files, like props or styles |
+| **transformType**     |   `false`    | `kebab or snake or pascal or camel` |   `camel`   |                                              Names transform strategy |
+| **extension**         |   `false`    |             `js or ts`              |    `js`     |                                                       Files extension |
+| **framework**         |    `true`    |           `react or vue`            |   `react`   |                                            Framework based generation |
+| **folders**           |   `false`    |              `String`               |    `[]`     |                     Additional folders, which will be on the endpoint |
+| **templates**         |   `false`    |              `String`               |    `{}`     | Path to the templates files, json format, see [Templates](#templates) |
+| **fileNameSeparator** |   `false`    |           `. or - or _ `            |     `.`     |                                           Filename separator strategy |
+| **reExport**          |   `false`    |              `Boolean`              |   `true`    |                  Creates index file, which re-export fn from the main |
+
+## <a name="templates"></a>Templates
+
+Your config file with your own templates to every file, or exactly for only one.
+
+### Template filename and extension:
+
+-   `*.js`
+
+### Accepted exports:
+
+-   `export const ...`
+
+-   `export {...}`
+
+-   `export default {...}`
+
+### Allowed variables:
+
+-   `$FILENAME$` - filename
+
+-   `$EXTENSION$` - file extension
+
+-   `$relation$` - relation to the main file, used only in `index` template
+
+### Example:
+
+If you set to the config `adjustVars`, for example, `index` and `style` you can provide the same vars to the template, like this:
+
+```js
+const index = `some template`
+const style = 'styles template'
+
+export default { style, index }
+```
+
+Also you can pass variables, like this:
+
+```js
+export const props = '$FILENAME$ is a props file with $EXTENSION$ extension'
+export const index = `$relation$ relation to main file`
+```
 
 ## <a name="preview"></a>Preview
 
@@ -96,7 +146,9 @@ or use package.json scripts:
 -   Each file have a template, also u can provide variables: `$filename$`
 -   _Result may vary because config may vary_
 
-    ![alt text](./src/assets/image.png)
+    ![alt text](./src/assets/sample_vue.png)
+
+    ![alt text](./src/assets/sample_react.png)
 
 ## <a name="contribution"></a>Contributing
 

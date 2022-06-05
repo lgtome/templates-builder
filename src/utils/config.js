@@ -16,13 +16,13 @@ const InitializeConfig = () => {
         process.exit(0)
     }
     const initialConfig = {
-        adjustVars: ['index', 'props', 'styles', 'stories'],
+        adjustVars: ['index'],
         entry: 'src',
-        transformType: 'kebab',
+        transformType: 'camel',
         extension: 'js',
-        framework: 'vue',
-        folders: ['components', 'services', 'helpers', 'graphql', '__tests__'],
+        framework: 'react',
         fileNameSeparator: '.',
+        folders: [],
         reExport: true,
         templates: {},
     }
