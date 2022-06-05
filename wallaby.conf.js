@@ -5,10 +5,7 @@ module.exports = (wallaby) => ({
         type: 'node',
     },
     compilers: {
-        '**/*.js': wallaby.compilers.babel({
-            /**@desc ava can be set up in the future...  */
-            // presets: ['@ava/babel-preset-stage-4'],
-        }),
+        '**/*.js': wallaby.compilers.babel({}),
     },
     testFramework: 'mocha',
 })

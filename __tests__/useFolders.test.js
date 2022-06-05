@@ -6,27 +6,27 @@ const mockFs = require('mock-fs')
 const path = require('path')
 const fs = require('fs')
 
-let mockConfig, logStub
-const availableFolders = ['random', 'folder', 'test', 'folders']
-beforeEach(() => {
-    logStub = sinon.stub(console, 'log')
-    mockConfig = sinon.mock(config)
-    mockFs({
-        testDirectory: {
-            testFolder: {},
-            wrongFolder: {
-                wrongSubFolder: 'index.js',
-            },
-        },
-    })
-})
-
-afterEach(() => {
-    mockConfig.restore()
-    mockFs.restore()
-    logStub.restore()
-})
 describe('useFolders test suite', () => {
+    let mockConfig, logStub
+    const availableFolders = ['random', 'folder', 'test', 'folders']
+    beforeEach(() => {
+        logStub = sinon.stub(console, 'log')
+        mockConfig = sinon.mock(config)
+        mockFs({
+            testDirectory: {
+                testFolder: {},
+                wrongFolder: {
+                    wrongSubFolder: 'index.js',
+                },
+            },
+        })
+    })
+
+    afterEach(() => {
+        mockConfig.restore()
+        mockFs.restore()
+        logStub.restore()
+    })
     it('useFolder should return splitted by / value', () => {
         const path = 'my/path'
         const splittedPath = useFolders.getFolders(path)

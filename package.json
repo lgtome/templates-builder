@@ -10,7 +10,7 @@
         "compile": "webpack .",
         "execute": "node ./bin/templates-builder",
         "test": "env-cmd -e test mocha --config=.mocharc.json",
-        "test:watch": "env-cmd -e test mocha --config=.mocharc.json --watch"
+        "test:watch": "env-cmd -e test mocha --config=.mocharc.json --watch "
     },
     "directories": {
         "lib": "src",

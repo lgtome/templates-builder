@@ -3,19 +3,18 @@ const { checkConfiguration } = require('../src/helpers/configCheck')
 const config = require('../src/utils/config')
 const sinon = require('sinon')
 
-let configMock, logStub, exitStub
-beforeEach(() => {
-    configMock = sinon.mock(config)
-    logStub = sinon.stub(console, 'log')
-    exitStub = sinon.mock(process)
-})
-afterEach(() => {
-    configMock.restore()
-    logStub.restore()
-    exitStub.restore()
-})
-
 describe('configCheck test suite', () => {
+    let configMock, logStub, exitStub
+    beforeEach(() => {
+        configMock = sinon.mock(config)
+        logStub = sinon.stub(console, 'log')
+        exitStub = sinon.mock(process)
+    })
+    afterEach(() => {
+        configMock.restore()
+        logStub.restore()
+        exitStub.restore()
+    })
     const defaultConfig = {
         adjustVars: ['index', 'props', 'styles', 'stories'],
         entry: 'src',

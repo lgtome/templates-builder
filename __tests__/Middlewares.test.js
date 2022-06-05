@@ -4,17 +4,16 @@ const { VueMiddleware } = require('../src/middlewares/VueMiddleware')
 const sinon = require('sinon')
 const initializedConfig = require('../src/utils/config')
 
-let logStub, configStub
-beforeEach(() => {
-    logStub = sinon.stub(console, 'log')
-    configStub = sinon.mock(initializedConfig)
-})
-afterEach(() => {
-    logStub.restore()
-    configStub.restore()
-})
-
 describe('Middlewares test suite', () => {
+    let logStub, configStub
+    beforeEach(() => {
+        logStub = sinon.stub(console, 'log')
+        configStub = sinon.mock(initializedConfig)
+    })
+    afterEach(async () => {
+        logStub.restore()
+        configStub.restore()
+    })
     it('Apply middleware return arguments if middlewares not provided', () => {
         const args = ['test', 'arguments']
         const appliedMiddlewares = applyMiddlewares(args)()

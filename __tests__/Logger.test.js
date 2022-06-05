@@ -2,15 +2,15 @@ const sinon = require('sinon')
 const { Logger } = require('../src/services/Logger')
 const assert = require('assert')
 
-let logStub
-beforeEach(() => {
-    logStub = sinon.stub(console, 'log')
-})
-afterEach(() => {
-    logStub.restore()
-})
-
 describe('Logger', () => {
+    let logStub
+    beforeEach(() => {
+        logStub = sinon.stub(console, 'log')
+    })
+    afterEach(() => {
+        logStub.restore()
+    })
+
     it('[1] console.log should work if function was called', () => {
         Logger.notProvided()
         assert.equal(logStub.calledOnce, true)
