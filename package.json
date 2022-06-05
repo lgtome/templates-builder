@@ -10,7 +10,8 @@
         "compile": "webpack .",
         "execute": "node ./bin/templates-builder",
         "test": "env-cmd -e test mocha --config=.mocharc.json",
-        "test:watch": "env-cmd -e test mocha --config=.mocharc.json --watch "
+        "test:watch": "env-cmd -e test mocha --config=.mocharc.json --watch ",
+        "test:coverage": "c8 -c ./c8.json mocha --config=.mocharc.json"
     },
     "directories": {
         "lib": "src",
@@ -42,5 +43,7 @@
         "os": false
     },
     "type": "commonjs",
-    "dependencies": {}
+    "dependencies": {
+        "c8": "^7.11.3"
+    }
 }
