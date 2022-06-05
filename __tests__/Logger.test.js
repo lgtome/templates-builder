@@ -9,6 +9,7 @@ beforeEach(() => {
 afterEach(() => {
     logStub.restore()
 })
+
 describe('Logger', () => {
     it('[1] console.log should work if function was called', () => {
         Logger.notProvided()

@@ -2,7 +2,6 @@ const assert = require('assert')
 const { checkConfiguration } = require('../src/helpers/configCheck')
 const config = require('../src/utils/config')
 const sinon = require('sinon')
-const Logger = require('../src/services/Logger')
 
 let configMock, logStub, exitStub
 beforeEach(() => {
