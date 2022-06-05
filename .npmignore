@@ -1,6 +1,5 @@
 .webpack.config.js
 __tests__/
-src/assets/
 src/src/
 .env-cmdrc
 coverage/
