@@ -21,7 +21,7 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'npm'
-            - run: yarn ci
+            - run: yarn
             - run: yarn run test --if-present
     build:
         runs-on: ubuntu-latest
