@@ -2,7 +2,7 @@
 
 <a href="https://codeclimate.com/github/lgtome/templates-builder/test_coverage"><img src="https://api.codeclimate.com/v1/badges/7a7ed6968bf515eb6e80/test_coverage" /></a>
 [![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg)](https://wallabyjs.com/oss/)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/templates-builder)
+![npm bundle size](https://img.shields.io/github/repo-size/lgtome/templates-builder)
 ![Build Status](https://img.shields.io/github/workflow/status/lgtome/templates-builder/Main)
 
 # [Package] which generate templates via config file and argv
