@@ -1,10 +1,10 @@
 const { changeExtensionTransform } = require('../helpers/useTransform')
 const { Logger } = require('../services/Logger')
-const { getConfig, getUniqueVars } = require('../utils/config')
+const config = require('../utils/config')
 
 function VueMiddleware(files) {
-    const { framework } = getConfig()
-    const { index, main } = getUniqueVars()
+    const { framework } = config.getConfig()
+    const { index } = config.getUniqueVars()
 
     if (framework !== 'vue') {
         return files

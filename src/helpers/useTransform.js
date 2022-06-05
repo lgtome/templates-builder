@@ -33,13 +33,10 @@ function camelCaseTransform(filename = '') {
 function removeSeparatorsTransform(str) {
     const symbolsRegex = /[\-\.\_]/gi
     const symbolsRegexGlobal = /[\w\s\d\S\W\D]/gi
-    let separatorIndex = 0
     return str.replace(symbolsRegexGlobal, (word, i) => {
         if (word.match(symbolsRegex)) {
-            separatorIndex = i + 1
             return ''
         }
-        if (separatorIndex === i) return word.toUpperCase()
         return word
     })
 }
@@ -54,6 +51,19 @@ function changeExtensionTransform(str, extension) {
     })
 }
 
+function getCorrectTransformType(type) {
+    switch (type) {
+        case 'kebab':
+            return kebabCaseTransform
+        case 'snake':
+            return snakeCaseTransform
+        case 'pascal':
+            return pascalCaseTransform
+        default:
+            return camelCaseTransform
+    }
+}
+
 module.exports = {
     kebabCaseTransform,
     pascalCaseTransform,
@@ -62,4 +72,5 @@ module.exports = {
     removeSeparatorsTransform,
     cutExtensionTransform,
     changeExtensionTransform,
+    getCorrectTransformType,
 }

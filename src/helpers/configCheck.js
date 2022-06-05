@@ -1,8 +1,8 @@
 const { Logger } = require('../services/Logger')
-const { getConfig, getInitialConfigKeys } = require('../utils/config')
+const externalConfig = require('../utils/config')
 
 function checkConfiguration() {
-    const config = getConfig()
+    const config = externalConfig.getConfig()
     const {
         adjustVars,
         entry,
@@ -55,7 +55,7 @@ function checkConfiguration() {
         Logger.wrongValue(templates, Object)
     }
     const configKeys = Object.keys(config)
-    const initialConfigKeys = getInitialConfigKeys()
+    const initialConfigKeys = externalConfig.getInitialConfigKeys()
     const diff = configKeys.filter((key) => !initialConfigKeys.includes(key))
     for (let key of diff) {
         Logger.message(key, 'not available')

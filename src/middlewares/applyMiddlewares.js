@@ -7,7 +7,7 @@ function applyMiddlewares(...args) {
                 'middlewares',
                 'not provided, returns default args...'
             )
-            return args
+            return args.flat(1)
         }
         return middlewares.flatMap((middleware) => middleware(...args))
     }

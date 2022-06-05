@@ -22,7 +22,6 @@ const InitializeConfig = () => {
         extension: 'js',
         framework: 'vue',
         folders: ['components', 'services', 'helpers', 'graphql', '__tests__'],
-        templatesFolder: false,
         fileNameSeparator: '.',
         reExport: true,
         templates: {},
@@ -50,6 +49,6 @@ const InitializeConfig = () => {
     }
 }
 
-const initializedConfig = InitializeConfig()
+const config = InitializeConfig()
 
-module.exports = { ...initializedConfig, initializedConfig }
+module.exports = config

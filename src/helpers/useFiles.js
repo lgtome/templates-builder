@@ -1,16 +1,7 @@
 const fs = require('fs')
-const {
-    initializedConfig,
-    getUniqueVars,
-    getConfig,
-} = require('../utils/config')
+const config = require('../utils/config')
 const { resolve } = require('path')
-const {
-    kebabCaseTransform,
-    pascalCaseTransform,
-    snakeCaseTransform,
-    camelCaseTransform,
-} = require('./useTransform')
+const { getCorrectTransformType } = require('./useTransform')
 const { applyMiddlewares } = require('../middlewares/applyMiddlewares')
 const { TemplateBuilder } = require('../services/TemplateBuilder')
 
@@ -22,9 +13,9 @@ async function appendItems(path, lastElement, middlewares = []) {
         return process.exit(1)
     }
     const Builder = new TemplateBuilder()
-    const { transformType, extension } = getConfig()
+    const { transformType, extension } = config.getConfig()
     const transform = getCorrectTransformType(transformType)
-    const files = transformFilenames(transform(lastElement))
+    const files = constructFiles(transform(lastElement))
     const transformedFiles = applyMiddlewares(files)(...middlewares)
 
     for (const { file, type, relation } of transformedFiles) {
@@ -41,22 +32,9 @@ async function appendItems(path, lastElement, middlewares = []) {
     }
 }
 
-function getCorrectTransformType(type) {
-    switch (type) {
-        case 'kebab':
-            return kebabCaseTransform
-        case 'snake':
-            return snakeCaseTransform
-        case 'pascal':
-            return pascalCaseTransform
-        default:
-            return camelCaseTransform
-    }
-}
-
-function transformFilenames(filename) {
-    const { extension, reExport, fileNameSeparator = '.' } = getConfig()
-    const fileTypes = initializedConfig.getFileTypes()
+function constructFiles(filename) {
+    const { extension, reExport, fileNameSeparator = '.' } = config.getConfig()
+    const fileTypes = config.getFileTypes()
     const acceptedTypes = fileTypes
     return acceptedTypes.flatMap((type) => {
         if (type === 'index') {
@@ -64,12 +42,12 @@ function transformFilenames(filename) {
                 ? [
                       {
                           file: `${type}${fileNameSeparator}${extension}`,
-                          type: getUniqueVars().index,
+                          type: config.getUniqueVars().index,
                           relation: filename,
                       },
                       {
                           file: `${filename}.${extension}`,
-                          type: getUniqueVars().main,
+                          type: config.getUniqueVars().main,
                       },
                   ]
                 : { file: `${type}${fileNameSeparator}${extension}`, type }

@@ -1,13 +1,5 @@
 const assert = require('assert')
 const config = require('../src/utils/config')
-const {
-    getConfig,
-    getExternalPath,
-    getFileTypes,
-    getUniqueVars,
-    initializedConfig,
-    modifyConfig,
-} = config
 const sinon = require('sinon')
 
 const DEFAULT_CONFIG = {
@@ -17,16 +9,16 @@ const DEFAULT_CONFIG = {
     extension: 'js',
     framework: 'vue',
     folders: ['components', 'services', 'helpers', 'graphql', '__tests__'],
-    templatesFolder: false,
     fileNameSeparator: '.',
     reExport: true,
+    templates: {},
 }
 
 describe('Config', () => {
     it('getConfig should return all configuration', () => {
-        const config = getConfig()
+        const cfg = config.getConfig()
 
-        assert.deepEqual(DEFAULT_CONFIG, config)
+        assert.deepEqual(DEFAULT_CONFIG, cfg) //?
     })
     it.skip('getExternalPath should return value if argv provided', () => {
         const path = config.getExternalPath()

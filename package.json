@@ -29,6 +29,7 @@
         "clean-webpack-plugin": "^4.0.0",
         "env-cmd": "^10.1.0",
         "mocha": "^10.0.0",
+        "mock-fs": "^5.1.2",
         "path-browserify": "^1.0.1",
         "sinon": "^14.0.0",
         "webpack": "^5.68.0",

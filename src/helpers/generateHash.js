@@ -1,10 +1,13 @@
-function generateHash(complexity, counter = 0, string = '') {
-    if (complexity === counter) return string.replace(/\./g, '').substring(1)
+function generateHash(complexity, precision = 4, string = '') {
+    if (complexity === 0) return string.replace(/\./g, '')
     else
         return generateHash(
-            complexity,
-            ++counter,
-            (string += Math.random().toString(36))
+            --complexity,
+            precision,
+            (string += Math.random()
+                .toFixed(precision)
+                .toString(36)
+                .substring(1))
         )
 }
 
