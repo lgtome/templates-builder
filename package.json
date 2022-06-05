@@ -1,10 +1,14 @@
 {
   "name": "templates-builder",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "main": "./src/index.js",
   "license": "MIT",
   "bin": {
     "tb": "./bin/templates-builder"
+  },
+  "author": {
+    "name": "lgtome",
+    "email": "seryikotenok232@gmail.com"
   },
   "description": "Generate file and folder structure from config with own custom templates.",
   "scripts": {
@@ -53,5 +57,25 @@
   "type": "commonjs",
   "dependencies": {
     "v8-compile-cache": "^2.3.0"
-  }
+  },
+  "engines": {
+    "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/lgtome/templates-builder.git"
+  },
+  "files": [
+    "src",
+    "bin"
+  ],
+  "homepage": "github.com/lgtome/templates-builder#readme",
+  "keywords": [
+    "structure",
+    "generate",
+    "build",
+    "config",
+    "templates",
+    "template"
+  ]
 }
