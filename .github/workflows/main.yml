@@ -49,8 +49,8 @@ jobs:
               with:
                   node-version: '14'
             # - uses: borales/actions-yarn@v2.3.0
-            # - run: yarn install
             - run: npm i -g yarn
+            - run: yarn install
             - uses: paambaati/codeclimate-action@v3.0.0
               env:
                   CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TOKEN }}
