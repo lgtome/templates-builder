@@ -143,9 +143,8 @@ export const index = `$relation$ relation to main file`
 - Each file have a template, also u can provide variables: `$filename$`
 - _Result may vary because config may vary_
 
-  ![alt text](./src/assets/sample_vue.png)
-
-  ![alt text](./src/assets/sample_react.png)
+  <img src="https://i.imgur.com/ZRfzCf0.png"></img>
+  <img src="https://i.imgur.com/cyVRkps.png"></img>
 
 ## <a name="contribution"></a>Contributing
 
