@@ -1,14 +1,14 @@
 {
-    "color": true,
-    "jobs": 6,
-    "extension": ["js", "cjs", "mjs"],
-    "package": "./package.json",
-    "retries": 4,
-    "diff": false,
-    "global": ["process", "$"],
-    "timeout": 4000,
-    "require": "@babel/register",
-    "spec": ["__tests__/*.test.js"],
-    "trace-warnings": true,
-    "recursive": true
+  "color": true,
+  "jobs": 6,
+  "extension": ["js", "cjs", "mjs"],
+  "package": "./package.json",
+  "retries": 4,
+  "diff": false,
+  "global": ["process", "$"],
+  "timeout": 4000,
+  "require": "@babel/register",
+  "spec": ["__tests__/*.test.js"],
+  "trace-warnings": true,
+  "recursive": true
 }

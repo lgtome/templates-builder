@@ -1,8 +1,8 @@
 const { getPathByDeep } = require('../../helpers/getPathByDeep')
 
 class VueTemplatesCollection {
-    main({ filename }) {
-        return `
+  main({ filename }) {
+    return `
 <template>
   <div>
         Pass code here...
@@ -20,19 +20,19 @@ export default {
 <style>
 </style>
 `
-    }
-    /**
-     * @todo add deep
-     * @param {number} deep is equal number
-     * @argument deep should be ...
-     */
-    index({ relation, deep = 1 }) {
-        return `export { ${relation} } from '${getPathByDeep(deep)}${relation}'`
-    }
+  }
+  /**
+   * @todo add deep
+   * @param {number} deep is equal number
+   * @argument deep should be ...
+   */
+  index({ relation, deep = 1 }) {
+    return `export { ${relation} } from '${getPathByDeep(deep)}${relation}'`
+  }
 
-    rest() {
-        return `export {}`
-    }
+  rest() {
+    return `export {}`
+  }
 }
 
 module.exports = { VueTemplatesCollection }

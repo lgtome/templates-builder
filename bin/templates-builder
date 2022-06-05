@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 'use strict'
 /** @name Babel */
+/**
+ * @desc speed up instantiation time
+ */
+require('v8-compile-cache')
 const { transformFileSync } = require('@babel/core')
 const BABEL_PLUGINS = {
     plugins: [

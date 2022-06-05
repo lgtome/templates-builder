@@ -1,8 +1,6 @@
-.env
 .webpack.config.js
-node_modules
-.gitignore
-README.md
-yarn.lock
-CHANGELOG
-LICENSE
+__tests__/
+src/assets/
+src/src/
+.env-cmdrc
+coverage/

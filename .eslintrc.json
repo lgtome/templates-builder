@@ -1,0 +1,8 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2022
+  },
+
+  "extends": ["plugin:prettier/recommended"],
+  "ignorePatterns": ["__tests__, **/*.png"]
+}

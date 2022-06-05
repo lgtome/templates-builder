@@ -7,38 +7,38 @@ const { getExternalPath, modifyConfig } = require('./utils/config')
 const { checkConfiguration } = require('./helpers/configCheck')
 const { VueMiddleware } = require('./middlewares/VueMiddleware')
 
-const ABSOLUTE_PATH = resolve(__dirname)
+const ABSOLUTE_PATH = resolve(process.cwd())
 
 async function build(externalConfig) {
-    const config = modifyConfig(externalConfig)
-    console.log('works entry')
-    checkConfiguration()
-    const { entry } = config || {}
+  const config = modifyConfig(externalConfig)
 
-    const externalPath = getExternalPath()
-    const ABSOLUTE_PATH_FROM_ENTRY = entry
-        ? resolve(ABSOLUTE_PATH, entry)
-        : ABSOLUTE_PATH
+  checkConfiguration()
+  const { entry } = config
 
-    const executePath = resolve(
-        createCorrectPath(ABSOLUTE_PATH_FROM_ENTRY),
-        externalPath
-    )
+  const externalPath = getExternalPath()
+  const ABSOLUTE_PATH_FROM_ENTRY = entry
+    ? resolve(ABSOLUTE_PATH, entry)
+    : ABSOLUTE_PATH
 
-    let tempPath = createCorrectPath(ABSOLUTE_PATH_FROM_ENTRY)
+  const executePath = resolve(
+    createCorrectPath(ABSOLUTE_PATH_FROM_ENTRY),
+    externalPath
+  )
 
-    for (const current of getFolders(externalPath)) {
-        tempPath = resolve(tempPath, current)
+  let tempPath = createCorrectPath(ABSOLUTE_PATH_FROM_ENTRY)
 
-        try {
-            await fs.promises.mkdir(tempPath, { recursive: true })
+  for (const current of getFolders(externalPath)) {
+    tempPath = resolve(tempPath, current)
 
-            if (tempPath === executePath) {
-                appendItems(tempPath, current, [VueMiddleware])
-                appendFolders(tempPath)
-            }
-        } catch (err) {}
-    }
+    try {
+      await fs.promises.mkdir(tempPath, { recursive: true })
+
+      if (tempPath === executePath) {
+        appendItems(tempPath, current, [VueMiddleware])
+        appendFolders(tempPath)
+      }
+    } catch (err) {}
+  }
 }
 
 module.exports = { build }

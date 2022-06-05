@@ -1,23 +1,23 @@
-# Template builder for React
+# Template builder for React and Vue
 
 <a href="https://codeclimate.com/github/lgtome/templates-builder/test_coverage"><img src="https://api.codeclimate.com/v1/badges/7a7ed6968bf515eb6e80/test_coverage" /></a>
 [![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg)](https://wallabyjs.com/oss/)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/templates-builder)
 ![Build Status](https://img.shields.io/github/workflow/status/lgtome/templates-builder/Main)
 
-### [Package] which generate templates via config file and argv
+# [Package] which generate templates via config file and argv
 
 ## Table of Contents
 
--   [Get Started](#get-started)
--   [Usage](#usage)
--   [Config](#config)
--   [Available Template Variables](#vars)
--   [Templates](#templates)
--   [Preview](#preview)
--   [Future Goals](#goals)
--   [Contribution](#contribution)
--   [License](#license)
+- [Get Started](#get-started)
+- [Usage](#usage)
+- [Config](#config)
+- [Available Template Variables](#vars)
+- [Templates](#templates)
+- [Preview](#preview)
+- [Future Goals](#goals)
+- [Contribution](#contribution)
+- [License](#license)
 
 ## <a name="get-started"></a>Get started
 
@@ -41,15 +41,15 @@ Use **default** preset or use **config** like:
 
 ```json
 {
-    "adjustVars": ["index", "props", "styles", "stories"],
-    "entry": "src",
-    "transformType": "kebab",
-    "extension": "js",
-    "framework": "vue",
-    "folders": ["components", "services", "helpers", "graphql", "__tests__"],
-    "fileNameSeparator": ".",
-    "reExport": true,
-    "templates": "path/to/your/templates"
+  "adjustVars": ["index", "props", "styles", "stories"],
+  "entry": "src",
+  "transformType": "kebab",
+  "extension": "js",
+  "framework": "vue",
+  "folders": ["components", "services", "helpers", "graphql", "__tests__"],
+  "fileNameSeparator": ".",
+  "reExport": true,
+  "templates": "path/to/your/templates"
 }
 ```
 
@@ -79,7 +79,7 @@ or use package.json scripts:
 
 ### Sample config filename:
 
--   `tb.config.json`
+- `tb.config.json`
 
 ### Config Options:
 
@@ -101,23 +101,23 @@ Your config file with your own templates to every file, or exactly for only one.
 
 ### Template filename and extension:
 
--   `*.js`
+- `*.js`
 
 ### Accepted exports:
 
--   `export const ...`
+- `export const ...`
 
--   `export {...}`
+- `export {...}`
 
--   `export default {...}`
+- `export default {...}`
 
 ### Allowed variables:
 
--   `$FILENAME$` - filename
+- `$FILENAME$` - filename
 
--   `$EXTENSION$` - file extension
+- `$EXTENSION$` - file extension
 
--   `$relation$` - relation to the main file, used only in `index` template
+- `$relation$` - relation to the main file, used only in `index` template
 
 ### Example:
 
@@ -139,13 +139,13 @@ export const index = `$relation$ relation to main file`
 
 ## <a name="preview"></a>Preview
 
--   Files with or without folders
--   Each file have a template, also u can provide variables: `$filename$`
--   _Result may vary because config may vary_
+- Files with or without folders
+- Each file have a template, also u can provide variables: `$filename$`
+- _Result may vary because config may vary_
 
-    ![alt text](./src/assets/sample_vue.png)
+  ![alt text](./src/assets/sample_vue.png)
 
-    ![alt text](./src/assets/sample_react.png)
+  ![alt text](./src/assets/sample_react.png)
 
 ## <a name="contribution"></a>Contributing
 
@@ -153,15 +153,15 @@ In an active search for contributors and I will be glad to support the package.
 
 **Follow this flow:**
 
--   Fork this repository
--   `git clone` your fork
--   `npm install` or `yarn install` make your changes
--   Update `CHANGELOG.md` commit and make a pull request
+- Fork this repository
+- `git clone` your fork
+- `npm install` or `yarn install` make your changes
+- Update `CHANGELOG.md` commit and make a pull request
 
 #### Currently working on
 
--   Tests
--   Support folder file structure
+- Tests
+- Support folder file structure
 
 ## <a name="license"></a>License
 
