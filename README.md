@@ -49,7 +49,7 @@ Use **default** preset or use **config** like:
     "transformType": "kebab",
     "extension": "js",
     "framework": "vue",
-    "folders": "['components', 'services', 'helpers', 'graphql', '__tests__']",
+    "folders": ["components", "services", "helpers", "graphql", "__tests__"],
     "fileNameSeparator": ".",
     "reExport": true,
     "templates": "path/to/your/templates"
