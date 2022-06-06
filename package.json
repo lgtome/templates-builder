@@ -18,7 +18,8 @@
     "test:watch": "env-cmd -e test mocha --config=.mocharc.json --watch ",
     "test:coverage": "c8 -c ./c8.json mocha --config=.mocharc.json",
     "eslint:check": "eslint --config=.eslintrc.json ./src/**/*.js",
-    "prettier:write": "prettier --config=.prettierrc --write ."
+    "prettier:write": "prettier --config=.prettierrc --write .",
+    "publish:patch": "make publish"
   },
   "directories": {
     "lib": "src",
