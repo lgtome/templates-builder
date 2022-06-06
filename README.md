@@ -5,7 +5,7 @@
 ![npm bundle size](https://img.shields.io/github/repo-size/lgtome/templates-builder)
 ![Build Status](https://img.shields.io/github/workflow/status/lgtome/templates-builder/Main)
 
-# [Templates Builder], is a package which generate file and folder structure from templates via config file and argv
+### [Templates Builder], is a package which generate file and folder structure from templates via config file and argv
 
 ## Table of Contents
 
