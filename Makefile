@@ -3,4 +3,5 @@ git-save:
 	
 publish: git-save
 	npm version patch
+	sleep 1
 	npm publish
