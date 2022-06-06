@@ -5,7 +5,7 @@
 ![npm bundle size](https://img.shields.io/github/repo-size/lgtome/templates-builder)
 ![Build Status](https://img.shields.io/github/workflow/status/lgtome/templates-builder/Main)
 
-# [Package] which generate templates via config file and argv
+# [Templates Builder], is a package which generate file and folder structure from templates via config file and argv
 
 ## Table of Contents
 
@@ -167,4 +167,4 @@ In an active search for contributors and I will be glad to support the package.
 [MIT-licensed](./LICENSE).
 
 [web workers]: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
-[package]: https://www.npmjs.com/package/templates-builder
+[templates builder]: https://www.npmjs.com/package/templates-builder
