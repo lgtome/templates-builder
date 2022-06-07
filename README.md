@@ -7,6 +7,8 @@
 
 ### [Templates Builder], is a package which generate file and folder structure from templates via config file and argv
 
+### This package also have a VSCode extension: [TB extension](https://marketplace.visualstudio.com/items?itemName=lgtome.tb-config)
+
 ## Table of Contents
 
 - [Get Started](#get-started)
