@@ -1,0 +1,11 @@
+{
+  "entry": "src",
+  "adjustVars": ["index"],
+  "extension": "js",
+  "fileNameSeparator": ".",
+  "folders": [],
+  "framework": "react",
+  "reExport": true,
+  "templates": "path/to/your/templates/file.js",
+  "transformType": "camel"
+}

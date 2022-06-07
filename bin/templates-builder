@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 'use strict'
-/** @name Babel */
+/**
+ * @name Babel
+ */
 /**
  * @desc speed up instantiation time
  */
-require('v8-compile-cache')
+// require('v8-compile-cache')
 const { transformFileSync } = require('@babel/core')
 const BABEL_PLUGINS = {
   plugins: [
@@ -12,26 +14,30 @@ const BABEL_PLUGINS = {
     '@babel/plugin-syntax-export-namespace-from',
   ],
 }
-/** @name Babel */
-/** @name Utils */
-const { existsSync, writeFileSync, rmSync } = require('fs')
+
+/**
+ * @name Utils
+ */
+const { existsSync, writeFileSync, rmSync, readFileSync } = require('fs')
 const { generateHash } = require('../src/helpers/generateHash')
 const path = require('path')
 const { build } = require(`${__dirname}/../src/index.js`)
 const directoryPath = require('../src/helpers/usePath')(__dirname)
-/** @name Utils */
-/** @name Config */
-const externalConfig =
-  existsSync(`${process.cwd()}/tb.config.json`) &&
-  require(`${process.cwd()}/tb.config.json`)
+
+/**
+ * @name Config
+ */
+const externalConfig = getConfig()
 const { templates: templatesFolderPath, ...config } = externalConfig || {}
 /** @name*
  * @desc Insert undefined because we have a default function param
  */
 const outputConfig = Object.keys(config).length > 0 ? config : undefined
-/** @name Config */
+
 if (templatesFolderPath) {
-  /** @name Templates from file */
+  /**
+   * @name Templates from file
+   */
   const transformedTemplatesFolderPath = path.resolve(
     __dirname,
     templatesFolderPath
@@ -41,8 +47,10 @@ if (templatesFolderPath) {
     BABEL_PLUGINS
   )
   const tempFilePath = `${__dirname}/${generateHash(2)}.js`
-  /** @name Templates from file */
-  /** @name Parse file with templates */
+
+  /**
+   * @name Parse file with templates
+   */
   try {
     writeFileSync(tempFilePath, templatesFile.code)
     const externalTemplates = existsSync(tempFilePath) && require(tempFilePath)
@@ -56,9 +64,31 @@ if (templatesFolderPath) {
   } catch {
     rmSync(tempFilePath)
   }
-  /** @name Parse file with templates */
 }
 
-/** @name Execute */
+/**
+ * @name Execute
+ * */
 build(outputConfig)
-/** @name Execute */
+
+/**
+ *
+ * @desc Helpers functions
+ *
+ */
+
+function getConfig() {
+  const executorPath = process.cwd()
+  const configFiles = ['tb.config.json', '.tbconfigrc']
+  const config = configFiles.reduce((acc, file) => {
+    const isExist = existsSync(`${executorPath}/${file}`)
+    const content =
+      isExist &&
+      readFileSync(`${executorPath}/${file}`, {
+        encoding: 'utf8',
+      })
+    const formattedContent = JSON.parse(content)
+    return isExist ? Object.assign(acc, formattedContent) : acc
+  }, {})
+  return config
+}

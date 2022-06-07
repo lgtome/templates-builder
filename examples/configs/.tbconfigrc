@@ -1,0 +1,5 @@
+{
+  "extension": "js",
+  "entry": "src",
+  "framework": "vue"
+}
