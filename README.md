@@ -151,11 +151,11 @@ export const index = `$relation$ relation to main file`
 
 ## <a name="extension"></a>VSCode Extension
 
-#### This package have a **VSCode** extension to autocomplete your config file and create it from scratch.
+#### This package have a **VSCode** extension to autocomplete your config file, generate templates folder from current config and create it from scratch..
 
 ### Usage and Installation
 
-**Easiest way** - use `tbe` from the shell.
+**Easiest way** - use `tb-ext` from the shell.
 
 **First Way** - follow this link and click install: [tb-config](https://marketplace.visualstudio.com/items?itemName=lgtome.tb-config)
 
