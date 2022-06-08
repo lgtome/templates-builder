@@ -5,7 +5,7 @@
   "license": "MIT",
   "bin": {
     "tb": "./bin/templates-builder",
-    "tb-ext": "./bin/templates-builder-ext"
+    "tbe": "./bin/templates-builder-ext"
   },
   "author": {
     "name": "lgtome",
