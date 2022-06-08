@@ -1,3 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env node
 
-code --install-extension lgtome.tb-config --force
+const { spawnSync } = require('child_process')
+
+spawnSync('code --install-extension lgtome.tb-config --force', { shell: true })
