@@ -155,6 +155,8 @@ export const index = `$relation$ relation to main file`
 
 ### Usage and Installation
 
+**Easiest way** - use `tbe` from the shell.
+
 **First Way** - follow this link and click install: [tb-config](https://marketplace.visualstudio.com/items?itemName=lgtome.tb-config)
 
 **Second Way** - search via VSCode extension store, extension name: `tb-cfg`
