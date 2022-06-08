@@ -7,7 +7,7 @@
 
 ### [Templates Builder], is a package which generate file and folder structure from templates via config file and argv
 
-### This package also have a VSCode extension: [TB extension](https://marketplace.visualstudio.com/items?itemName=lgtome.tb-config)
+### This package also have a VSCode extension: [TB extension](https://marketplace.visualstudio.com/items?itemName=lgtome.tb-config), see more: [Extension](#extension)
 
 ## Table of Contents
 
@@ -17,6 +17,7 @@
 - [Available Template Variables](#vars)
 - [Templates](#templates)
 - [Preview](#preview)
+- [VSCode Extension](#extension)
 - [Future Goals](#goals)
 - [Contribution](#contribution)
 - [License](#license)
@@ -147,6 +148,18 @@ export const index = `$relation$ relation to main file`
 
   <img src="https://i.imgur.com/ZRfzCf0.png"></img>
   <img src="https://i.imgur.com/cyVRkps.png"></img>
+
+## <a name="extension"></a>VSCode Extension
+
+#### This package have a **VSCode** extension to autocomplete your config file and create it from scratch.
+
+### Usage and Installation
+
+**First Way** - follow this link and click install: [tb-config](https://marketplace.visualstudio.com/items?itemName=lgtome.tb-config)
+
+**Second Way** - search via VSCode extension store, extension name: `tb-config`
+
+**Third Way** - manually install: `ext install lgtome.tb-config`
 
 ## <a name="contribution"></a>Contributing
 
