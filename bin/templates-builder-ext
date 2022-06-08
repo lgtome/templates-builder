@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 
 const { spawnSync } = require('child_process')
+const { log } = console
 
-spawnSync('code --install-extension lgtome.tb-config --force', { shell: true })
+const res = spawnSync('code --install-extension lgtome.tb-config --force', {
+  shell: true,
+})
+
+log(res.output.toString('utf-8'))

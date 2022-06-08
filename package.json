@@ -15,6 +15,7 @@
   "scripts": {
     "compile": "webpack .",
     "execute": "node ./bin/templates-builder",
+    "execute:ext": "node ./bin/templates-builder-ext",
     "test": "env-cmd -e test mocha --config=.mocharc.json",
     "test:watch": "env-cmd -e test mocha --config=.mocharc.json --watch ",
     "test:coverage": "c8 -c ./c8.json mocha --config=.mocharc.json",
