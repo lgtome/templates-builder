@@ -157,7 +157,7 @@ export const index = `$relation$ relation to main file`
 
 **First Way** - follow this link and click install: [tb-config](https://marketplace.visualstudio.com/items?itemName=lgtome.tb-config)
 
-**Second Way** - search via VSCode extension store, extension name: `tb-config`
+**Second Way** - search via VSCode extension store, extension name: `tb-cfg`
 
 **Third Way** - manually install: `ext install lgtome.tb-config`
 
