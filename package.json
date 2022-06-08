@@ -4,7 +4,8 @@
   "main": "./src/index.js",
   "license": "MIT",
   "bin": {
-    "tb": "./bin/templates-builder"
+    "tb": "./bin/templates-builder",
+    "tb-ext": "./bin/templates-builder-ext"
   },
   "author": {
     "name": "lgtome",
