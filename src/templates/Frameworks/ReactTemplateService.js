@@ -1,7 +1,7 @@
 const {
   ReactTemplatesByExtension,
 } = require('../../utils/templates/ReactTemplates')
-const { getPathByDeep } = require('../../helpers/getPathByDeep')
+const { getPathByDeep } = require('../../helpers/usePath')
 class ReactTemplatesCollection {
   main({ filename, extension }) {
     return `

@@ -1,4 +1,4 @@
-const { generateHash } = require('../src/helpers/generateHash')
+const { generateHash } = require('../src/helpers/useGenerate')
 const assert = require('assert')
 describe('generateHash test suite', () => {
   it('hash with complexity 1 should returns correct hash value with default precision', () => {

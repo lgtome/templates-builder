@@ -1,4 +1,4 @@
-const { getPathByDeep } = require('../../helpers/getPathByDeep')
+const { getPathByDeep } = require('../../helpers/usePath')
 
 class VueTemplatesCollection {
   main({ filename }) {

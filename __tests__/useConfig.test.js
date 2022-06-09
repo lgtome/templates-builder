@@ -1,5 +1,5 @@
 const assert = require('assert')
-const { checkConfiguration } = require('../src/helpers/configCheck')
+const { checkConfiguration } = require('../src/helpers/useConfig')
 const config = require('../src/utils/config')
 const sinon = require('sinon')
 

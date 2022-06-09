@@ -155,6 +155,8 @@ export const index = `$relation$ relation to main file`
 
 ### Usage and Installation
 
+#### Installation
+
 **Easiest way** - use `tb-ext` from the shell.
 
 **First Way** - follow this link and click install: [tb-config](https://marketplace.visualstudio.com/items?itemName=lgtome.tb-config)
@@ -162,6 +164,15 @@ export const index = `$relation$ relation to main file`
 **Second Way** - search via VSCode extension store, extension name: `tb-cfg`
 
 **Third Way** - manually install: `ext install lgtome.tb-config`
+
+#### Usage
+
+Full autocomplete for config file by default.
+Commands (use ctrl\cmd + shift + p):
+
+- `Templates Builder: Create config` - create config file with default structure
+
+- `Templates Builder: Create template file from config`- generate templates folder from config
 
 ## <a name="contribution"></a>Contributing
 

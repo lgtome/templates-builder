@@ -7,4 +7,8 @@ function createCorrectPath(path) {
   return PATH_RESOLVED.slice(-1) === '/' ? PATH_RESOLVED : PATH_RESOLVED + '/'
 }
 
-module.exports = createCorrectPath
+function getPathByDeep(deep = 1, path = './') {
+  if (deep <= 1) return path
+  return getPathByDeep(--deep, (path += '../'))
+}
+module.exports = { createCorrectPath, getPathByDeep }

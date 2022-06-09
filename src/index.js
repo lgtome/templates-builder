@@ -1,10 +1,10 @@
 const fs = require('fs')
 const { resolve } = require('path')
 const { appendItems } = require('./helpers/useFiles')
-const createCorrectPath = require('./helpers/usePath')
+const { createCorrectPath } = require('./helpers/usePath')
 const { getFolders, appendFolders } = require('./helpers/useFolders')
 const { getExternalPath, modifyConfig } = require('./utils/config')
-const { checkConfiguration } = require('./helpers/configCheck')
+const { checkConfiguration } = require('./helpers/useConfig')
 const { VueMiddleware } = require('./middlewares/VueMiddleware')
 
 const ABSOLUTE_PATH = resolve(process.cwd())

@@ -19,10 +19,9 @@ const BABEL_PLUGINS = {
  * @name Utils
  */
 const { existsSync, writeFileSync, rmSync, readFileSync } = require('fs')
-const { generateHash } = require('../src/helpers/generateHash')
+const { generateHash } = require('../src/helpers/useGenerate')
 const path = require('path')
 const { build } = require(`${__dirname}/../src/index.js`)
-const directoryPath = require('../src/helpers/usePath')(__dirname)
 
 /**
  * @name Config
