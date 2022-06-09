@@ -1,11 +1,5 @@
 const assert = require('assert')
 const useTransform = require('../src/helpers/useTransform')
-const config = require('../src/utils/config')
-const sinon = require('sinon')
-const mockFs = require('mock-fs')
-const path = require('path')
-const fs = require('fs')
-const Logger = require('../src/services/Logger')
 
 describe('useTransform test suite', () => {
   it('kebab transform should return filename transformed to kebab case', () => {

@@ -19,9 +19,7 @@ function snakeCaseTransform(filename = '') {
 }
 
 function pascalCaseTransform(filename = '') {
-  return filename.replace(lowercaseRegex, (element, index) =>
-    element.toUpperCase()
-  )
+  return filename.replace(lowercaseRegex, (element) => element.toUpperCase())
 }
 
 function camelCaseTransform(filename = '') {
