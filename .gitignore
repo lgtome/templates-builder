@@ -6,3 +6,5 @@
 
 /bin/templates
 /bin/*.json
+/dist
+.vscode

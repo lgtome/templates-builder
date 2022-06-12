@@ -13,7 +13,7 @@ async function build(externalConfig) {
   const config = modifyConfig(externalConfig)
 
   checkConfiguration()
-  const { entry } = config
+  const { entry, middlewares } = config
 
   const externalPath = getExternalPath()
   const ABSOLUTE_PATH_FROM_ENTRY = entry
@@ -34,7 +34,7 @@ async function build(externalConfig) {
       await fs.promises.mkdir(tempPath, { recursive: true })
 
       if (tempPath === executePath) {
-        appendItems(tempPath, current, [VueMiddleware])
+        appendItems(tempPath, current, [VueMiddleware, ...middlewares])
         appendFolders(tempPath)
       }
     } catch (err) {}

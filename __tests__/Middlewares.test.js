@@ -44,8 +44,7 @@ describe('Middlewares test suite', () => {
     const args = { test: { type: 'test', file: 'file.js' } }
     const appliedMiddlewares = applyMiddlewares(args)(VueMiddleware)
 
-    assert.equal(appliedMiddlewares.length, 1)
-    assert.deepEqual(appliedMiddlewares, [args])
+    assert.deepEqual(appliedMiddlewares, args)
     assert.equal(logStub.calledOnce, 1)
   })
   it('Vue middleware should return not modified file, if index is match', () => {

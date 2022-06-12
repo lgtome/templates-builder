@@ -1,8 +1,7 @@
 const { changeExtensionTransform } = require('../helpers/useTransform')
 const { Logger } = require('../services/Logger')
-const config = require('../utils/config')
 
-function VueMiddleware(files) {
+const VueMiddleware = (config) => (files) => {
   const { framework } = config.getConfig()
   const { index } = config.getUniqueVars()
 
@@ -14,7 +13,7 @@ function VueMiddleware(files) {
     Logger.wrongValue('files', Array)
     return files
   }
-
+  
   return files.map((fileObject) => {
     if (fileObject.type === index) {
       return fileObject

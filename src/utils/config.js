@@ -25,6 +25,7 @@ const InitializeConfig = () => {
     folders: [],
     reExport: true,
     templates: {},
+    middlewares: [],
   }
 
   const config = new Map().set(key, initialConfig)

@@ -7,11 +7,13 @@
  * @desc speed up instantiation time
  */
 // require('v8-compile-cache')
-const { transformFileSync } = require('@babel/core')
+const { transformFileSync, parse } = require('@babel/core')
+const { default: generator } = require('@babel/generator')
 const BABEL_PLUGINS = {
   plugins: [
     '@babel/plugin-transform-modules-commonjs',
     '@babel/plugin-syntax-export-namespace-from',
+    '@babel/plugin-syntax-json-strings',
   ],
 }
 
@@ -68,6 +70,7 @@ if (templatesFolderPath) {
 /**
  * @name Execute
  * */
+console.log(outputConfig)
 build(outputConfig)
 
 /**
@@ -78,16 +81,25 @@ build(outputConfig)
 
 function getConfig() {
   const executorPath = process.cwd()
-  const configFiles = ['tb.config.json', '.tbconfigrc']
+  const configFiles = ['tb.config.json', '.tbconfigrc', 'tb.config.js']
   const config = configFiles.reduce((acc, file) => {
     const isExist = existsSync(`${executorPath}/${file}`)
-    const content =
-      isExist &&
-      readFileSync(`${executorPath}/${file}`, {
-        encoding: 'utf8',
-      })
-    const formattedContent = JSON.parse(content)
-    return isExist ? Object.assign(acc, formattedContent) : acc
+    const content = isExist && require(`${executorPath}/${file}`)
+    if (!content) {
+      return acc
+    }
+    const formattedContent = mapToObject(content)
+    return Object.assign(acc, formattedContent)
   }, {})
   return config
+}
+
+function mapToObject(structure) {
+  if (typeof structure === 'function') {
+    return structure()
+  }
+  if (typeof structure === 'object') {
+    return structure
+  }
+  return JSON.parse(structure)
 }

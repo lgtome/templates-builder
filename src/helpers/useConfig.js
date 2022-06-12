@@ -13,6 +13,7 @@ function checkConfiguration() {
     folders,
     reExport,
     templates,
+    middlewares,
   } = config
 
   if (!adjustVars) {
@@ -53,6 +54,9 @@ function checkConfiguration() {
   }
   if (typeof templates !== 'object') {
     Logger.wrongValue(templates, Object)
+  }
+  if (!Array.isArray(middlewares)) {
+    Logger.wrongValue(middlewares, Array)
   }
   const configKeys = Object.keys(config)
   const initialConfigKeys = externalConfig.getInitialConfigKeys()

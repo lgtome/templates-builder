@@ -13,6 +13,7 @@ describe('Config', () => {
     folders: [],
     reExport: true,
     templates: {},
+    middlewares: [],
   }
   const DEFAULT_UNIQUE_VARS = ['index', 'main']
   const FRAMEWORKS = ['react', 'vue', 'angular']

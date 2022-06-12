@@ -25,6 +25,7 @@ describe('configCheck test suite', () => {
     fileNameSeparator: '.',
     reExport: true,
     templates: {},
+    middlewares: [],
   }
   it('adjustVars should be provided', () => {
     configMock
