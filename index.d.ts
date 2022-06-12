@@ -1,4 +1,4 @@
-interface FileObject {
+export interface FileObject {
   /**
    * @param {string} file - filename with extension
    */
@@ -17,7 +17,7 @@ export type MiddlewareFunction = (
   config: ConfigMethods
 ) => (files: FileObject[]) => FileObject[]
 
-interface ConfigMethods {
+export interface ConfigMethods {
   /**
    * @returns adjustVars from config
    */
@@ -47,7 +47,7 @@ interface ConfigMethods {
    */
   getInitialConfigKeys: () => Array<string>
 }
-interface Config {
+export interface Config {
   adjustVars: Array<string>
   entry: string
   transformType: string

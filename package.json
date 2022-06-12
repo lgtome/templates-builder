@@ -13,7 +13,7 @@
   },
   "types": "./index.d.ts",
   "exports": {
-    "./types": "./index.d.ts"
+    "types": "./index.d.ts"
   },
   "description": "Generate file and folder structure from config with own custom templates.",
   "scripts": {
@@ -77,7 +77,8 @@
   },
   "files": [
     "src",
-    "bin"
+    "bin",
+    "index.d.ts"
   ],
   "homepage": "github.com/lgtome/templates-builder#readme",
   "keywords": [
