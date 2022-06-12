@@ -11,6 +11,10 @@
     "name": "lgtome",
     "email": "seryikotenok232@gmail.com"
   },
+  "types": "./index.d.ts",
+  "exports": {
+    "./types": "./index.d.ts"
+  },
   "description": "Generate file and folder structure from config with own custom templates.",
   "scripts": {
     "compile": "webpack .",
