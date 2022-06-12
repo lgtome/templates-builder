@@ -16,6 +16,7 @@
 - [Config](#config)
 - [Available Template Variables](#vars)
 - [Templates](#templates)
+- [Middlewares](#middlewares)
 - [Preview](#preview)
 - [VSCode Extension](#extension)
 - [Future Goals](#goals)
@@ -138,6 +139,29 @@ Also you can pass variables, like this:
 ```js
 export const props = '$FILENAME$ is a props file with $EXTENSION$ extension'
 export const index = `$relation$ relation to main file`
+```
+
+## <a name="middlewares"></a>Middlewares
+
+Middlewares conception available via config file. You can use custom framework agnostic middlewares.
+
+### Examples path from the root repository - `examples/middlewares`
+
+Currently middlewares accepting all transformed files and config object with methods to manipulate config (without modifying)
+
+#### Usage
+
+_**All types available in `examples/middlewares` directory**_
+
+Middlewares can be used only via config file. Set a property `middlewares` which allow `Array<Middleware>`, so for example:
+
+```js
+const Middleware = (config) => (files) => files
+{
+  ...,
+  middlewares: [Middleware, Middleware, Middleware],
+  ...
+}
 ```
 
 ## <a name="preview"></a>Preview
