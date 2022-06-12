@@ -70,7 +70,6 @@ if (templatesFolderPath) {
 /**
  * @name Execute
  * */
-console.log(outputConfig)
 build(outputConfig)
 
 /**
