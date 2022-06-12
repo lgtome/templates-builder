@@ -84,6 +84,8 @@ or use package.json scripts:
 ### Sample config filename:
 
 - `tb.config.json`
+- `tb.config.js`
+- `.tbconfigrc`
 
 ### Config Options:
 
@@ -143,6 +145,8 @@ export const index = `$relation$ relation to main file`
 
 ## <a name="middlewares"></a>Middlewares
 
+_**Available only in `tb.config.js` file**_
+
 Middlewares conception available via config file. You can use custom framework agnostic middlewares.
 
 ### Examples path from the root repository - `examples/middlewares`
@@ -157,11 +161,11 @@ Middlewares can be used only via config file. Set a property `middlewares` which
 
 ```js
 const Middleware = (config) => (files) => files
-{
+module.exports = () => ({
   ...,
   middlewares: [Middleware, Middleware, Middleware],
   ...
-}
+})
 ```
 
 ## <a name="preview"></a>Preview
