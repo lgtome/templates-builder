@@ -1,6 +1,6 @@
 {
   "name": "templates-builder",
-  "version": "1.2.29",
+  "version": "1.2.30",
   "main": "./src/index.js",
   "license": "MIT",
   "bin": {
