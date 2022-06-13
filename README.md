@@ -89,17 +89,18 @@ or use package.json scripts:
 
 ### Config Options:
 
-| Config option         | Requirements |           Available types           |  Defaults   |                                                               Meaning |
-| :-------------------- | :----------: | :---------------------------------: | :---------: | --------------------------------------------------------------------: |
-| **entry**             |   `false`    |              `String`               |    `src`    |                 Absolute directory from which the files are generated |
-| **adjustVars**        |   `false`    |           `Array<String>`           | `['index']` |                                       Sub-files, like props or styles |
-| **transformType**     |   `false`    | `kebab or snake or pascal or camel` |   `camel`   |                                              Names transform strategy |
-| **extension**         |   `false`    |             `js or ts`              |    `js`     |                                                       Files extension |
-| **framework**         |    `true`    |           `react or vue`            |   `react`   |                                            Framework based generation |
-| **folders**           |   `false`    |              `String`               |    `[]`     |                     Additional folders, which will be on the endpoint |
-| **templates**         |   `false`    |              `String`               |    `{}`     | Path to the templates files, json format, see [Templates](#templates) |
-| **fileNameSeparator** |   `false`    |           `. or - or _ `            |     `.`     |                                           Filename separator strategy |
-| **reExport**          |   `false`    |              `Boolean`              |   `true`    |                  Creates index file, which re-export fn from the main |
+| Config option         | Requirements |           Available types           |  Defaults   |                                                                                           Meaning |
+| :-------------------- | :----------: | :---------------------------------: | :---------: | ------------------------------------------------------------------------------------------------: |
+| **entry**             |   `false`    |              `String`               |    `src`    |                                             Absolute directory from which the files are generated |
+| **adjustVars**        |   `false`    |           `Array<String>`           | `['index']` |                                                                   Sub-files, like props or styles |
+| **transformType**     |   `false`    | `kebab or snake or pascal or camel` |   `camel`   |                                                                          Names transform strategy |
+| **extension**         |   `false`    |             `js or ts`              |    `js`     |                                                                                   Files extension |
+| **framework**         |    `true`    |           `react or vue`            |   `react`   |                                                                        Framework based generation |
+| **folders**           |   `false`    |              `String`               |    `[]`     |                                                 Additional folders, which will be on the endpoint |
+| **templates**         |   `false`    |              `String`               |    `{}`     |                             Path to the templates files, json format, see [Templates](#templates) |
+| **fileNameSeparator** |   `false`    |           `. or - or _ `            |     `.`     |                                                                       Filename separator strategy |
+| **reExport**          |   `false`    |              `Boolean`              |   `true`    |                                              Creates index file, which re-export fn from the main |
+| **middlewares**       |   `false`    |          `Array<Function>`          |    `[]`     | Array of middlewares which would be executed on transform files, **Available only in `.js` file** |
 
 ## <a name="templates"></a>Templates
 
